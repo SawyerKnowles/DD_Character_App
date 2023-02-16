@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/destination_stats"
+        android:title="Stats"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/destination_abilities"
+        android:title="Abilities"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/destination_traits"
+        android:title="Traits"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/destination_inventory"
+        android:title="Inventroy"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/destination_spells"
+        android:title="Spells"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/destination_notes"
+        android:title="Notes"
+        app:showAsAction="never"/>
+</menu>

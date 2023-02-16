@@ -3,10 +3,19 @@ package com.example.ddcharacterapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation
+import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity(), OnInputListener {
@@ -39,8 +48,16 @@ class MainActivity : AppCompatActivity(), OnInputListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.navigation_main)
 
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        setupActionBar(navController)
+
+        /* Add Character without using Navigation
         val addCharButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
 
         /* Get Character Info Using Activity
@@ -81,5 +98,40 @@ class MainActivity : AppCompatActivity(), OnInputListener {
             resultLauncher.launch(charInfoPop)
             //startActivity(charInfoPop)*/
         }
+         */
     }
+
+    private fun setupActionBar(navController: NavController) {
+        NavigationUI.setupActionBarWithNavController(this, navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_navigation, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        val navigated = NavigationUI.onNavDestinationSelected(item, navController)
+        return navigated || super.onOptionsItemSelected(item)
+
+        /*
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        when(item.itemId) {
+            R.id.destination_stats -> navController.navigate(R.id.destination_stats)
+        }
+        return super.onOptionsItemSelected(item)
+         */
+    }
+
 }

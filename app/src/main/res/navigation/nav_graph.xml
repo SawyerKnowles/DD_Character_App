@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/destination_home">
+
+    <fragment
+        android:id="@+id/destination_stats"
+        android:name="com.example.ddcharacterapp.StatsFragment"
+        android:label="StatsFragment" />
+    <fragment
+        android:id="@+id/destination_notes"
+        android:name="com.example.ddcharacterapp.NotesFragment"
+        android:label="NotesFragment" />
+    <fragment
+        android:id="@+id/destination_home"
+        android:name="com.example.ddcharacterapp.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/destination_spells"
+        android:name="com.example.ddcharacterapp.SpellsFragment"
+        android:label="SpellsFragment" />
+    <fragment
+        android:id="@+id/destination_traits"
+        android:name="com.example.ddcharacterapp.TraitsFragment"
+        android:label="TraitsFragment" />
+    <fragment
+        android:id="@+id/destination_abilities"
+        android:name="com.example.ddcharacterapp.AbilitiesFragment"
+        android:label="AbilitiesFragment" />
+    <fragment
+        android:id="@+id/destination_inventory"
+        android:name="com.example.ddcharacterapp.InventoryFragment"
+        android:label="InventoryFragment" />
+</navigation>
