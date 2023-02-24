@@ -1,6 +1,7 @@
 package com.example.ddcharacterapp
 
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.adapter.ItemAdapter
+import com.example.ddcharacterapp.adapter.NotesAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class NotesFragment : Fragment(), RecyclerViewInterface {
@@ -32,7 +34,8 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
 
         val recyclerView = act.findViewById<RecyclerView>(R.id.notes_recycler)
         //val notesList = mutableListOf<NoteData>()
-        recyclerView.adapter = ItemAdapter(notesList, act, this)
+        //recyclerView.adapter = ItemAdapter(notesList, act, this)
+        recyclerView.adapter = NotesAdapter(notesList)
 
         var i = 0
 
@@ -41,9 +44,12 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
 
             //val newNoteView = layoutInflater.inflate(R.layout.list_item, null)
             //view?.findViewById<RecyclerView>(R.id.notes_recycler)?.addView(newNoteView)
-            notesList.add(NoteData("Note_$i", "body_$i"))
+            //notesList.add(NoteData("Note_$i", "body_$i"))
+            val e = "Item Body"
+            notesList.add(NoteData("Item_$i", Editable.Factory.getInstance().newEditable(e), false))
             i++
-            recyclerView.adapter = ItemAdapter(notesList, act, this)
+            //recyclerView.adapter = ItemAdapter(notesList, act, this)
+            recyclerView.adapter = NotesAdapter(notesList)
         }
     }
 
