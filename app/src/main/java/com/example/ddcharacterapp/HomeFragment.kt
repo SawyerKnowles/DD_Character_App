@@ -2,9 +2,7 @@ package com.example.ddcharacterapp
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -52,14 +50,18 @@ class HomeFragment : Fragment(), OnInputListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title = "D&D Character App"
+        val act = (activity as AppCompatActivity) // get activity
+        act.supportActionBar?.title = "D&D Character App"
+
 
         val addCharButton = view?.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         addCharButton?.setOnClickListener() {
             var dialog = NewCharacterDialogFragment()
             //dialog.show(supportFragmentManager, "newCharacterDialog")
-            dialog.show((activity as AppCompatActivity).supportFragmentManager, "newCharacterDialog")
+            dialog.show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "newCharacterDialog"
+            )
         }
-
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -11,6 +12,8 @@ import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.MenuProvider
+import androidx.core.view.iterator
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -18,7 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 
 
-class MainActivity : AppCompatActivity(), OnInputListener {
+class MainActivity : AppCompatActivity(), OnInputListener, MenuProvider {
+
     private fun addNewCharacterToList(newName: String, newClass: String, newLevel: String) {
         Log.d("Check2", "Activity addNewCharacterToList Called")
         val charLayout = findViewById<LinearLayout>(R.id.charLayout)
@@ -36,6 +40,8 @@ class MainActivity : AppCompatActivity(), OnInputListener {
             Log.d("CharacterName", "Character Name: " + menuName.text.toString())
             Log.d("CharacterClass", "Character Class: " + menuClass.text.toString())
             Log.d("CharacterLevel", "Character Level: " + menuLevel.text.toString())
+            addMenuProvider(this)
+            Navigation.findNavController(it).navigate(R.id.destination_stats)
         }
 
         charLayout.addView(newCharView)
@@ -108,11 +114,24 @@ class MainActivity : AppCompatActivity(), OnInputListener {
     override fun onSupportNavigateUp(): Boolean {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+        removeMenuProvider(this)
+        Log.d("NavUp", "Should be removed")
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.menu_navigation, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        val navigated = NavigationUI.onNavDestinationSelected(menuItem, navController)
+        return navigated || super.onOptionsItemSelected(menuItem)
+    }
+/*
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        //menuInflater.inflate(R.menu.menu_navigation, menu)
         return true
     }
 
@@ -132,6 +151,8 @@ class MainActivity : AppCompatActivity(), OnInputListener {
         }
         return super.onOptionsItemSelected(item)
          */
-    }
 
+
+    }
+ */
 }

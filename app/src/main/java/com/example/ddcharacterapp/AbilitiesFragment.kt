@@ -22,6 +22,8 @@ class AbilitiesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title = "MyAbilities"
+        val act = (activity as AppCompatActivity) // get activity
+        act.supportActionBar?.title = "Character Name"
+
     }
 }
