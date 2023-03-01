@@ -1,5 +1,8 @@
 package com.example.ddcharacterapp.adapter
 
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +16,39 @@ import com.example.ddcharacterapp.R
 
 class AbilityAdapter(private var abilityList: List<AbilityData>) : RecyclerView.Adapter<AbilityAdapter.ViewHolder>() {
 
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+        private lateinit var adapter : AbilityAdapter
+        init {
+            view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("beforeTextChanged", "Before Changed")
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("onTextChanged", "On Changed")
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    Log.d("afterTextChanged", "After Changed")
+                    if (p0 != null) {
+                        adapter.abilityList[adapterPosition].title = p0
+                    }
+                }
+
+            })
+        }
+
+        public fun linkAdapter(adapter : AbilityAdapter) : AbilityAdapter.ViewHolder {
+            this.adapter = adapter
+            return this
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbilityAdapter.ViewHolder {
         //create new view
         val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.ability_item, parent,false)
-        return AbilityAdapter.ViewHolder(adapterLayout)
+        return AbilityAdapter.ViewHolder(adapterLayout).linkAdapter(this)
     }
 
     override fun getItemCount(): Int {
@@ -29,7 +59,7 @@ class AbilityAdapter(private var abilityList: List<AbilityData>) : RecyclerView.
         with(holder){
             with(abilityList[position]){
                 // set name of the language from the list
-                view.findViewById<TextView>(R.id.tv_lang_name).text = this.title
+                view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
                 // after click on the item we will make the visibility of the "expandedView" visible
@@ -46,5 +76,13 @@ class AbilityAdapter(private var abilityList: List<AbilityData>) : RecyclerView.
                 }
             }
         }
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 }

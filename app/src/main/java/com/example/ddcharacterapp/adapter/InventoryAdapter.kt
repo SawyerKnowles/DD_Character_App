@@ -29,7 +29,7 @@ class InventoryAdapter(private var inventoryList: List<InventoryItemData>) : Rec
         with(holder){
             with(inventoryList[position]){
                 // set name of the language from the list
-                view.findViewById<TextView>(R.id.tv_lang_name).text = this.title
+                view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
                 // after click on the item we will make the visibility of the "expandedView" visible
@@ -46,5 +46,13 @@ class InventoryAdapter(private var inventoryList: List<InventoryItemData>) : Rec
                 }
             }
         }
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 }

@@ -2,9 +2,11 @@ package com.example.ddcharacterapp
 
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -15,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AbilitiesFragment : Fragment() {
 
-    val abilityList = mutableListOf<AbilityData>()
+    var abilityList = mutableListOf<AbilityData>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,10 +45,14 @@ class AbilitiesFragment : Fragment() {
 
             //val newNoteView = layoutInflater.inflate(R.layout.list_item, null)
             //view?.findViewById<RecyclerView>(R.id.notes_recycler)?.addView(newNoteView)
-            val e = "Item Body"
-            abilityList.add(AbilityData("Item_$i", Editable.Factory.getInstance().newEditable(e), false))
+            val body = "Ability Description"
+            val title = "Ability Title"
+            abilityList.add(AbilityData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             i++
             recyclerView.adapter = AbilityAdapter(abilityList)
+
+            abilityList.forEach { Log.d("notesList", it.title.toString()) }
+            Log.d("Separator", "---------------")
         }
 
     }

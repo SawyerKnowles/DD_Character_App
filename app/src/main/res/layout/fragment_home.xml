@@ -26,6 +26,14 @@
             android:layout_height="3dp"
             android:background="?android:attr/listDivider" />
 
+        <!-- List with RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/character_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <!-- List with LinearLayout
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -38,6 +46,7 @@
 
 
         </ScrollView>
+        -->
 
     </LinearLayout>
 

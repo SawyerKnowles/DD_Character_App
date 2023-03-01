@@ -14,13 +14,13 @@
         android:layout_height="match_parent">
 
         <!--Text view for showing the language name-->
-        <TextView
+        <EditText
             android:id="@+id/tv_lang_name"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:maxWidth="300dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="New Notes Item"
+            android:hint="New Notes Item"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"

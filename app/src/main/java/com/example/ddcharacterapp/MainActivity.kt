@@ -17,12 +17,16 @@ import androidx.core.view.iterator
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ddcharacterapp.adapter.CharacterCardAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 
 
-class MainActivity : AppCompatActivity(), OnInputListener, MenuProvider {
+class MainActivity : AppCompatActivity(), MenuProvider {
 
+    /* On Input Listener Functions - Deprecated for Fragment implementation
     private fun addNewCharacterToList(newName: String, newClass: String, newLevel: String) {
         Log.d("Check2", "Activity addNewCharacterToList Called")
         val charLayout = findViewById<LinearLayout>(R.id.charLayout)
@@ -49,8 +53,10 @@ class MainActivity : AppCompatActivity(), OnInputListener, MenuProvider {
 
     override fun sendNewCharacterInfo(newName: String, newClass: String, newLevel: String) {
         Log.d("Check", "Activity sendNewCharacterInfo Called")
-        addNewCharacterToList(newName, newClass, newLevel)
+        //addNewCharacterToList(newName, newClass, newLevel)
     }
+
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
