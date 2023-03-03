@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.adapter.AbilityAdapter
 import com.example.ddcharacterapp.adapter.InventoryAdapter
+import com.example.ddcharacterapp.adapter.NotesAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AbilitiesFragment : Fragment() {
@@ -36,7 +37,7 @@ class AbilitiesFragment : Fragment() {
 
         val recyclerView = act.findViewById<RecyclerView>(R.id.abilities_recycler)
         //val notesList = mutableListOf<NoteData>()
-        recyclerView.adapter = AbilityAdapter(abilityList)
+        recyclerView.adapter = AbilityAdapter(abilityList, this)
 
         var i = 0
 
@@ -49,11 +50,22 @@ class AbilitiesFragment : Fragment() {
             val title = "Ability Title"
             abilityList.add(AbilityData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             i++
-            recyclerView.adapter = AbilityAdapter(abilityList)
+            recyclerView.adapter = AbilityAdapter(abilityList, this)
 
             abilityList.forEach { Log.d("notesList", it.title.toString()) }
             Log.d("Separator", "---------------")
         }
 
+    }
+
+    fun onDeletePressed(position: Int) {
+        abilityList.removeAt(position)
+        updateAdapter()
+    }
+
+    fun updateAdapter() {
+        val act = (activity as AppCompatActivity)
+        val recyclerView = act.findViewById<RecyclerView>(R.id.notes_recycler)
+        recyclerView.adapter = AbilityAdapter(abilityList, this)
     }
 }

@@ -2,6 +2,8 @@ package com.example.ddcharacterapp.adapter
 
 import android.content.Context
 import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +38,7 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 adapter.notifyDataSetChanged()
             }
 
+            /* Save Using Button
             view.findViewById<Button>(R.id.notes_item_save_button).setOnClickListener {
                 var title = view.findViewById<EditText>(R.id.tv_lang_name).text.toString()
                 var body = view.findViewById<EditText>(R.id.tv_description).text.toString()
@@ -44,6 +47,48 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 adapter.notifyDataSetChanged()
 
             }
+             */
+
+            // Save Using TextListener
+            view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object :
+                TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("beforeTextChanged", "Before Changed")
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("onTextChanged", "On Changed")
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    Log.d("afterTextChanged", "After Changed")
+                    if (p0 != null) {
+                        adapter.notesList[adapterPosition].title = p0
+                        adapter.notesList[adapterPosition].titleSaved = true
+                    }
+                }
+
+            })
+
+            view.findViewById<EditText>(R.id.tv_description).addTextChangedListener(object :
+                TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("beforeTextChanged", "Before Changed")
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("onTextChanged", "On Changed")
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    Log.d("afterTextChanged", "After Changed")
+                    if (p0 != null) {
+                        adapter.notesList[adapterPosition].body = p0
+                        adapter.notesList[adapterPosition].bodySaved = true
+                    }
+                }
+
+            })
         }
 
         public fun linkAdapter(adapter : NotesAdapter) : ViewHolder {
@@ -71,13 +116,12 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
             with(notesList[position]){
                 // set name of the language from the list
 
-                if(notesList[position].saved) {
+                if(notesList[position].titleSaved) {
                     view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
                 }
-
                 //view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
 
                 // set description to the text
@@ -85,13 +129,12 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 // after click on the item we will make the visibility of the "expandedView" visible
                 // which will also make the visibility of desc also visible
 
-                if(notesList[position].saved) {
+                if(notesList[position].bodySaved) {
                     view.findViewById<EditText>(R.id.tv_description).text = this.body
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body
                 }
-
                 //view.findViewById<EditText>(R.id.tv_description).hint = this.body
 
                 // check if boolean property "extend" is true or false

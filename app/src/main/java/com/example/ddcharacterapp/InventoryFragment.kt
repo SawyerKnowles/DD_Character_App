@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ddcharacterapp.adapter.AbilityAdapter
 import com.example.ddcharacterapp.adapter.InventoryAdapter
 import com.example.ddcharacterapp.adapter.ItemAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -35,7 +36,7 @@ class InventoryFragment : Fragment() {
 
         recyclerView = act.findViewById<RecyclerView>(R.id.inventory_recycler)
         //val notesList = mutableListOf<NoteData>()
-        recyclerView.adapter = InventoryAdapter(inventoryList)
+        recyclerView.adapter = InventoryAdapter(inventoryList, this)
 
         var i = 0
 
@@ -48,8 +49,19 @@ class InventoryFragment : Fragment() {
             val title = "Item Title"
             inventoryList.add(InventoryItemData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             i++
-            recyclerView.adapter = InventoryAdapter(inventoryList)
+            recyclerView.adapter = InventoryAdapter(inventoryList, this)
         }
 
+    }
+
+    fun onDeletePressed(position: Int) {
+        inventoryList.removeAt(position)
+        updateAdapter()
+    }
+
+    fun updateAdapter() {
+        val act = (activity as AppCompatActivity)
+        val recyclerView = act.findViewById<RecyclerView>(R.id.notes_recycler)
+        recyclerView.adapter = InventoryAdapter(inventoryList, this)
     }
 }

@@ -10,22 +10,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ddcharacterapp.adapter.InventoryAdapter
 import com.example.ddcharacterapp.adapter.NotesAdapter
 import com.example.ddcharacterapp.adapter.SpellAdapter
 
 class SpellsFragment : Fragment() {
 
-    val level_0_spell_list = mutableListOf<SpellData>()
-
-    val level_1_spell_list = mutableListOf<SpellData>()
-    val level_2_spell_list = mutableListOf<SpellData>()
-    val level_3_spell_list = mutableListOf<SpellData>()
-    val level_4_spell_list = mutableListOf<SpellData>()
-    val level_5_spell_list = mutableListOf<SpellData>()
-    val level_6_spell_list = mutableListOf<SpellData>()
-    val level_7_spell_list = mutableListOf<SpellData>()
-    val level_8_spell_list = mutableListOf<SpellData>()
-    val level_9_spell_list = mutableListOf<SpellData>()
+    val level_0_spell_list = ArrayList<SpellData>()
+    val level_1_spell_list = ArrayList<SpellData>()
+    val level_2_spell_list = ArrayList<SpellData>()
+    val level_3_spell_list = ArrayList<SpellData>()
+    val level_4_spell_list = ArrayList<SpellData>()
+    val level_5_spell_list = ArrayList<SpellData>()
+    val level_6_spell_list = ArrayList<SpellData>()
+    val level_7_spell_list = ArrayList<SpellData>()
+    val level_8_spell_list = ArrayList<SpellData>()
+    val level_9_spell_list = ArrayList<SpellData>()
 
 
 
@@ -69,7 +69,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_0_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_0_recycler_view != null) {
-                level_0_recycler_view.adapter = SpellAdapter(level_0_spell_list)
+                level_0_recycler_view.adapter = SpellAdapter(level_0_spell_list, this)
             }
             if (level_0_recycler_view != null) {
                 level_0_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -83,7 +83,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_1_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_1_recycler_view != null) {
-                level_1_recycler_view.adapter = SpellAdapter(level_1_spell_list)
+                level_1_recycler_view.adapter = SpellAdapter(level_1_spell_list, this)
             }
             if (level_1_recycler_view != null) {
                 level_1_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -97,7 +97,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_2_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_2_recycler_view != null) {
-                level_2_recycler_view.adapter = SpellAdapter(level_2_spell_list)
+                level_2_recycler_view.adapter = SpellAdapter(level_2_spell_list, this)
             }
             if (level_2_recycler_view != null) {
                 level_2_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -111,7 +111,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_3_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_3_recycler_view != null) {
-                level_3_recycler_view.adapter = SpellAdapter(level_3_spell_list)
+                level_3_recycler_view.adapter = SpellAdapter(level_3_spell_list, this)
             }
             if (level_3_recycler_view != null) {
                 level_3_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -125,7 +125,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_4_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_4_recycler_view != null) {
-                level_4_recycler_view.adapter = SpellAdapter(level_4_spell_list)
+                level_4_recycler_view.adapter = SpellAdapter(level_4_spell_list, this)
             }
             if (level_4_recycler_view != null) {
                 level_4_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -139,7 +139,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_5_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_5_recycler_view != null) {
-                level_5_recycler_view.adapter = SpellAdapter(level_5_spell_list)
+                level_5_recycler_view.adapter = SpellAdapter(level_5_spell_list, this)
             }
             if (level_5_recycler_view != null) {
                 level_5_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -153,7 +153,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_6_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_6_recycler_view != null) {
-                level_6_recycler_view.adapter = SpellAdapter(level_6_spell_list)
+                level_6_recycler_view.adapter = SpellAdapter(level_6_spell_list, this)
             }
             if (level_6_recycler_view != null) {
                 level_6_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -167,7 +167,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_7_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_7_recycler_view != null) {
-                level_7_recycler_view.adapter = SpellAdapter(level_7_spell_list)
+                level_7_recycler_view.adapter = SpellAdapter(level_7_spell_list, this)
             }
             if (level_7_recycler_view != null) {
                 level_7_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -182,7 +182,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_8_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_8_recycler_view != null) {
-                level_8_recycler_view.adapter = SpellAdapter(level_8_spell_list)
+                level_8_recycler_view.adapter = SpellAdapter(level_8_spell_list, this)
             }
             if (level_8_recycler_view != null) {
                 level_8_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -196,7 +196,7 @@ class SpellsFragment : Fragment() {
             val title = "Spell Title"
             level_9_spell_list.add(SpellData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             if (level_9_recycler_view != null) {
-                level_9_recycler_view.adapter = SpellAdapter(level_9_spell_list)
+                level_9_recycler_view.adapter = SpellAdapter(level_9_spell_list, this)
             }
             if (level_9_recycler_view != null) {
                 level_9_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -205,11 +205,45 @@ class SpellsFragment : Fragment() {
         }
     }
 
-    private fun attachRecyclerList(act: AppCompatActivity, list : List<SpellData>, recycler : Int): RecyclerView? {
+    private fun attachRecyclerList(act: AppCompatActivity, list : ArrayList<SpellData>, recycler : Int): RecyclerView? {
         var recyclerView = act.findViewById<RecyclerView>(recycler)
-        recyclerView.adapter = SpellAdapter(list)
+        recyclerView.adapter = SpellAdapter(list, this)
         recyclerView.layoutManager = LinearLayoutManager(context)
         //recyclerView.isNestedScrollingEnabled = true
         return recyclerView
+    }
+
+    fun updateAdapters() {
+        val act = (activity as AppCompatActivity)
+
+        val recyclerView0 = act.findViewById<RecyclerView>(R.id.level_0_spells_recycler)
+        recyclerView0.adapter = SpellAdapter(level_0_spell_list, this)
+
+        val recyclerView1 = act.findViewById<RecyclerView>(R.id.level_1_spells_recycler)
+        recyclerView1.adapter = SpellAdapter(level_1_spell_list, this)
+
+        val recyclerView2 = act.findViewById<RecyclerView>(R.id.level_2_spells_recycler)
+        recyclerView2.adapter = SpellAdapter(level_2_spell_list, this)
+
+        val recyclerView3 = act.findViewById<RecyclerView>(R.id.level_3_spells_recycler)
+        recyclerView3.adapter = SpellAdapter(level_3_spell_list, this)
+
+        val recyclerView4 = act.findViewById<RecyclerView>(R.id.level_4_spells_recycler)
+        recyclerView4.adapter = SpellAdapter(level_4_spell_list, this)
+
+        val recyclerView5 = act.findViewById<RecyclerView>(R.id.level_5_spells_recycler)
+        recyclerView5.adapter = SpellAdapter(level_5_spell_list, this)
+
+        val recyclerView6 = act.findViewById<RecyclerView>(R.id.level_6_spells_recycler)
+        recyclerView6.adapter = SpellAdapter(level_6_spell_list, this)
+
+        val recyclerView7 = act.findViewById<RecyclerView>(R.id.level_7_spells_recycler)
+        recyclerView7.adapter = SpellAdapter(level_7_spell_list, this)
+
+        val recyclerView8 = act.findViewById<RecyclerView>(R.id.level_8_spells_recycler)
+        recyclerView8.adapter = SpellAdapter(level_8_spell_list, this)
+
+        val recyclerView9 = act.findViewById<RecyclerView>(R.id.level_9_spells_recycler)
+        recyclerView9.adapter = SpellAdapter(level_9_spell_list, this)
     }
 }

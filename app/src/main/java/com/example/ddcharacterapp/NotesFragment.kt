@@ -67,7 +67,8 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
     fun onSavePressed(position: Int, title : String, body : String) {
         notesList[position].title = Editable.Factory.getInstance().newEditable(title)
         notesList[position].body = Editable.Factory.getInstance().newEditable(body)
-        notesList[position].saved = true
+        notesList[position].titleSaved = true
+        notesList[position].bodySaved = true
         updateAdapter()
     }
 

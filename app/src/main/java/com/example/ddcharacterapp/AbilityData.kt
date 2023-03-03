@@ -4,6 +4,8 @@ import android.text.Editable
 
 data class AbilityData (
     var title : Editable,
-    val body : Editable,
-    var expand : Boolean = false
+    var body : Editable,
+    var expand : Boolean = false,
+    var titleSaved : Boolean = false,
+    var bodySaved : Boolean = false
 )

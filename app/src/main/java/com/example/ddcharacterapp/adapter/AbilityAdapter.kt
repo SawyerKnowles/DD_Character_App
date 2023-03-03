@@ -6,20 +6,32 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ddcharacterapp.AbilitiesFragment
 import com.example.ddcharacterapp.AbilityData
+import com.example.ddcharacterapp.NotesFragment
 import com.example.ddcharacterapp.R
 
-class AbilityAdapter(private var abilityList: List<AbilityData>) : RecyclerView.Adapter<AbilityAdapter.ViewHolder>() {
+class AbilityAdapter(private var abilityList: List<AbilityData>, var frag : AbilitiesFragment) : RecyclerView.Adapter<AbilityAdapter.ViewHolder>() {
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         private lateinit var adapter : AbilityAdapter
         init {
+            // Define click listener for the ViewHolder's View
+            view.findViewById<Button>(R.id.ability_item_delete_button).setOnClickListener() {
+                //adapter.notesList.removeAt(adapterPosition)
+                adapter.frag.onDeletePressed(adapterPosition)
+                adapter.notifyItemRemoved(adapterPosition)
+                adapter.notifyItemRangeChanged(0, adapter.abilityList.size)
+                adapter.notifyDataSetChanged()
+            }
+
             view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     Log.d("beforeTextChanged", "Before Changed")
@@ -33,6 +45,27 @@ class AbilityAdapter(private var abilityList: List<AbilityData>) : RecyclerView.
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
                         adapter.abilityList[adapterPosition].title = p0
+                        adapter.abilityList[adapterPosition].titleSaved = true
+                    }
+                }
+
+            })
+
+            view.findViewById<EditText>(R.id.tv_description).addTextChangedListener(object :
+                TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("beforeTextChanged", "Before Changed")
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    Log.d("onTextChanged", "On Changed")
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    Log.d("afterTextChanged", "After Changed")
+                    if (p0 != null) {
+                        adapter.abilityList[adapterPosition].body = p0
+                        adapter.abilityList[adapterPosition].bodySaved = true
                     }
                 }
 
@@ -59,12 +92,27 @@ class AbilityAdapter(private var abilityList: List<AbilityData>) : RecyclerView.
         with(holder){
             with(abilityList[position]){
                 // set name of the language from the list
-                view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
+                if(abilityList[position].titleSaved) {
+                    view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                }
+                else {
+                    view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
+                }
+                //view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
+
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
                 // after click on the item we will make the visibility of the "expandedView" visible
                 // which will also make the visibility of desc also visible
-                view.findViewById<EditText>(R.id.tv_description).hint = this.body
+
+                if(abilityList[position].bodySaved) {
+                    view.findViewById<EditText>(R.id.tv_description).text = this.body
+                }
+                else {
+                    view.findViewById<EditText>(R.id.tv_description).hint = this.body
+                }
+                //view.findViewById<EditText>(R.id.tv_description).hint = this.body
+
                 // check if boolean property "extend" is true or false
                 // if it is true make the "extendedView" Visible
                 view.findViewById<RelativeLayout>(R.id.expanded_view).visibility = if (this.expand) View.VISIBLE else View.GONE

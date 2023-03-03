@@ -6,5 +6,6 @@ data class NoteData (
     var title : Editable,
     var body : Editable,
     var expand : Boolean = false,
-    var saved : Boolean = false
+    var titleSaved : Boolean = false,
+    var bodySaved : Boolean = false
 )
