@@ -1,14 +1,12 @@
 package com.example.ddcharacterapp.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ddcharacterapp.NoteData
+import com.example.ddcharacterapp.data.NoteData
 import com.example.ddcharacterapp.R
 import com.example.ddcharacterapp.RecyclerViewInterface
 

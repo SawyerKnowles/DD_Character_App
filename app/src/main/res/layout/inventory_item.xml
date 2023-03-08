@@ -20,7 +20,6 @@
             android:maxWidth="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:hint="New Inventory Item"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -62,11 +61,13 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp">
 
+                    <!--
                     <Button
                         android:id="@+id/inventory_item_save_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Save" />
+                    -->
 
                     <Space
                         android:layout_width="0dp"

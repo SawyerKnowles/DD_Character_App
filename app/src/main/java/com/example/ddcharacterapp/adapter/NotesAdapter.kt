@@ -1,6 +1,5 @@
 package com.example.ddcharacterapp.adapter
 
-import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -10,11 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ddcharacterapp.MainActivity
-import com.example.ddcharacterapp.NoteData
+import com.example.ddcharacterapp.data.NoteData
 import com.example.ddcharacterapp.NotesFragment
 import com.example.ddcharacterapp.R
 
@@ -63,7 +60,8 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.notesList[adapterPosition].title = p0
+                        //adapter.notesList[adapterPosition].title = p0
+                        adapter.notesList[adapterPosition].title = p0.toString()
                         adapter.notesList[adapterPosition].titleSaved = true
                     }
                 }
@@ -83,7 +81,8 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.notesList[adapterPosition].body = p0
+                        //adapter.notesList[adapterPosition].body = p0
+                        adapter.notesList[adapterPosition].body = p0.toString()
                         adapter.notesList[adapterPosition].bodySaved = true
                     }
                 }
@@ -117,7 +116,8 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 // set name of the language from the list
 
                 if(notesList[position].titleSaved) {
-                    view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
@@ -130,7 +130,8 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 // which will also make the visibility of desc also visible
 
                 if(notesList[position].bodySaved) {
-                    view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body

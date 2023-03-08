@@ -1,25 +1,20 @@
 package com.example.ddcharacterapp.adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.MenuProvider
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.CharacterCardData
-import com.example.ddcharacterapp.InventoryItemData
+import com.example.ddcharacterapp.MainActivity
 import com.example.ddcharacterapp.R
-import kotlin.math.log
 
-class CharacterCardAdapter(private var characterList: List<CharacterCardData>, var activity : AppCompatActivity) : RecyclerView.Adapter<CharacterCardAdapter.ViewHolder>() {
+class CharacterCardAdapter(private var characterList: ArrayList<CharacterCardData>, var activity : AppCompatActivity) : RecyclerView.Adapter<CharacterCardAdapter.ViewHolder>() {
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -52,6 +47,8 @@ class CharacterCardAdapter(private var characterList: List<CharacterCardData>, v
                 view.findViewById<CardView>(R.id.characterCard).setOnClickListener {
                     //this.expand = !this.expand
                     Log.d("Character Card Click", "Character " + this.charName + " card clicked")
+                    (activity as MainActivity).dataManager = this.charDataManager // set main activity DM to selected Character's DM
+                    (activity as MainActivity).characterIndex = adapterPosition
                     activity.addMenuProvider((activity) as MenuProvider)
                     view.findNavController().navigate(R.id.destination_stats)
                     notifyDataSetChanged()

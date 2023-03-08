@@ -45,7 +45,7 @@
             <!-- END OF HEADER -->
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -228,7 +228,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
@@ -254,7 +254,7 @@
 
                     <EditText
                         android:id="@+id/HD_editText"
-                        android:layout_width="80dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:ems="10"
                         android:hint="0d0"
@@ -281,7 +281,7 @@
 
                     <EditText
                         android:id="@+id/maxHD_editText"
-                        android:layout_width="80dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:ems="10"
                         android:hint="0d0"

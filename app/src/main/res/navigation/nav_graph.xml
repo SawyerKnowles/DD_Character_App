@@ -32,4 +32,8 @@
         android:id="@+id/destination_inventory"
         android:name="com.example.ddcharacterapp.InventoryFragment"
         android:label="InventoryFragment" />
+    <fragment
+        android:id="@+id/destination_settings"
+        android:name="com.example.ddcharacterapp.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

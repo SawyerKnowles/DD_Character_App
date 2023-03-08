@@ -1,31 +1,40 @@
 package com.example.ddcharacterapp
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Note
 import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ddcharacterapp.adapter.ItemAdapter
 import com.example.ddcharacterapp.adapter.NotesAdapter
+import com.example.ddcharacterapp.data.NoteData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class NotesFragment : Fragment(), RecyclerViewInterface {
+
     //val notesList = mutableListOf<NoteData>()
-    val notesList = ArrayList<NoteData>()
+    var notesList = ArrayList<NoteData>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
+        Log.d("NotesFragment", "NotesFragment created.")
+        val mainAct =  (activity as MainActivity)
+        notesList = mainAct.dataManager.notesData.notesDataList // get notes list from main activity DM
         return inflater.inflate(R.layout.fragment_notes, container, false)
 
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        val mainAct =  (activity as MainActivity)
+        mainAct.dataManager.notesData.notesDataList = notesList // set notes list for main activity DM
+        Log.d("NotesFragment", "NotesFragment destroyed.")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,10 +43,15 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
         val act = (activity as AppCompatActivity) // get activity
         act.supportActionBar?.title = "Character Name"
 
+
+        //notesList = mainAct.getNotesData().notesDataList
+
         val recyclerView = act.findViewById<RecyclerView>(R.id.notes_recycler)
         //val notesList = mutableListOf<NoteData>()
         //recyclerView.adapter = ItemAdapter(notesList, act, this)
+
         recyclerView.adapter = NotesAdapter(notesList, this)
+        //recyclerView.adapter = NotesAdapter(mainAct.dataManager.notesData.notesDataList, this)
 
         var i = 0
 
@@ -49,7 +63,8 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
             //notesList.add(NoteData("Note_$i", "body_$i"))
             val body = "Note Body"
             val title = "Note Title"
-            notesList.add(NoteData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
+            //notesList.add(NoteData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
+            notesList.add(NoteData(title, body, false))
             i++
             //recyclerView.adapter = ItemAdapter(notesList, act, this)
             recyclerView.adapter = NotesAdapter(notesList, this)
@@ -65,8 +80,10 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
     }
 
     fun onSavePressed(position: Int, title : String, body : String) {
-        notesList[position].title = Editable.Factory.getInstance().newEditable(title)
-        notesList[position].body = Editable.Factory.getInstance().newEditable(body)
+        //notesList[position].title = Editable.Factory.getInstance().newEditable(title)
+        //notesList[position].body = Editable.Factory.getInstance().newEditable(body)
+        notesList[position].title = title
+        notesList[position].body = body
         notesList[position].titleSaved = true
         notesList[position].bodySaved = true
         updateAdapter()

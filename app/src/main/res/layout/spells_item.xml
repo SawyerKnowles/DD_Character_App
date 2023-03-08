@@ -76,16 +76,18 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp">
 
+                    <!--
                     <Button
                         android:id="@+id/spells_item_save_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Save" />
+                    -->
 
                     <Space
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                     <Button
                         android:id="@+id/spells_item_delete_button"

@@ -25,4 +25,8 @@
         android:id="@+id/destination_notes"
         android:title="Notes"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/destination_settings"
+        android:title="Settings"
+        app:showAsAction="never"/>
 </menu>

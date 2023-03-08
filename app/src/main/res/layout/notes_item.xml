@@ -61,11 +61,13 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp">
 
+                    <!--
                     <Button
                         android:id="@+id/notes_item_save_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Save" />
+                    -->
 
                     <Space
                         android:layout_width="0dp"

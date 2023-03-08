@@ -9,15 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.InventoryFragment
-import com.example.ddcharacterapp.InventoryItemData
-import com.example.ddcharacterapp.NotesFragment
+import com.example.ddcharacterapp.data.InventoryItemData
 import com.example.ddcharacterapp.R
 
-class InventoryAdapter(private var inventoryList: List<InventoryItemData>, var frag : InventoryFragment) : RecyclerView.Adapter<InventoryAdapter.ViewHolder>() {
+class InventoryAdapter(private var inventoryList: ArrayList<InventoryItemData>, var frag : InventoryFragment) : RecyclerView.Adapter<InventoryAdapter.ViewHolder>() {
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -44,7 +42,8 @@ class InventoryAdapter(private var inventoryList: List<InventoryItemData>, var f
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.inventoryList[adapterPosition].title = p0
+                        //adapter.inventoryList[adapterPosition].title = p0
+                        adapter.inventoryList[adapterPosition].title = p0.toString()
                         adapter.inventoryList[adapterPosition].titleSaved = true
                     }
                 }
@@ -64,7 +63,8 @@ class InventoryAdapter(private var inventoryList: List<InventoryItemData>, var f
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.inventoryList[adapterPosition].body = p0
+                        //adapter.inventoryList[adapterPosition].body = p0
+                        adapter.inventoryList[adapterPosition].body = p0.toString()
                         adapter.inventoryList[adapterPosition].bodySaved = true
                     }
                 }
@@ -94,7 +94,8 @@ class InventoryAdapter(private var inventoryList: List<InventoryItemData>, var f
                 // set name of the language from the list
 
                 if(inventoryList[position].titleSaved) {
-                    view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
@@ -106,7 +107,8 @@ class InventoryAdapter(private var inventoryList: List<InventoryItemData>, var f
                 // which will also make the visibility of desc also visible
 
                 if(inventoryList[position].bodySaved) {
-                    view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body

@@ -19,7 +19,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment(), OnInputListener {
 
-    val characterList = mutableListOf<CharacterCardData>()
+    //val characterList = ArrayList<CharacterCardData>()\
+    lateinit var characterList : ArrayList<CharacterCardData>
     lateinit var recyclerView : RecyclerView
     //lateinit var adapter : CharacterCardAdapter
 
@@ -44,7 +45,8 @@ class HomeFragment : Fragment(), OnInputListener {
         }
 
         //view?.findViewById<LinearLayout>(R.id.charLayout)?.addView(newCharView)
-        characterList.add(CharacterCardData(menuName.text.toString(), menuClass.text.toString(), menuLevel.text.toString()))
+        val characterDataManager = DataManager()
+        characterList.add(CharacterCardData(menuName.text.toString(), menuClass.text.toString(), menuLevel.text.toString(), characterDataManager))
         val act = (activity as AppCompatActivity) // get activity
         recyclerView.adapter = CharacterCardAdapter(characterList, act)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -61,6 +63,8 @@ class HomeFragment : Fragment(), OnInputListener {
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
+        Log.d("HomeFragment", "HomeFragment created.")
+        characterList = (activity as MainActivity).characterListGlobal
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -85,4 +89,10 @@ class HomeFragment : Fragment(), OnInputListener {
             )
         }
     }
+
+    override fun onDetach() {
+        Log.d("HomeFragment", "HomeFragment destroyed.")
+        super.onDetach()
+    }
+
 }

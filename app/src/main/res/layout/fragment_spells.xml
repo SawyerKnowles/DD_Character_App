@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/traits_title"
+                android:id="@+id/spells_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -34,7 +34,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <View
-                android:id="@+id/traits_divider"
+                android:id="@+id/spells_divider"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="?android:attr/listDivider"
@@ -83,7 +83,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <EditText
-                            android:id="@+id/speed_editText"
+                            android:id="@+id/casting_ability_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -121,7 +121,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <EditText
-                            android:id="@+id/AC_editText"
+                            android:id="@+id/saveDC_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -159,7 +159,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <EditText
-                            android:id="@+id/INIT_editText"
+                            android:id="@+id/attack_bonus_editText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"

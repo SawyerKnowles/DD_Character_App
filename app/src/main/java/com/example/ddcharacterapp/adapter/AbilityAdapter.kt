@@ -9,15 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.AbilitiesFragment
-import com.example.ddcharacterapp.AbilityData
-import com.example.ddcharacterapp.NotesFragment
+import com.example.ddcharacterapp.data.AbilityData
 import com.example.ddcharacterapp.R
 
-class AbilityAdapter(private var abilityList: List<AbilityData>, var frag : AbilitiesFragment) : RecyclerView.Adapter<AbilityAdapter.ViewHolder>() {
+class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag : AbilitiesFragment) : RecyclerView.Adapter<AbilityAdapter.ViewHolder>() {
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -44,7 +42,8 @@ class AbilityAdapter(private var abilityList: List<AbilityData>, var frag : Abil
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.abilityList[adapterPosition].title = p0
+                        //adapter.abilityList[adapterPosition].title = p0
+                        adapter.abilityList[adapterPosition].title = p0.toString()
                         adapter.abilityList[adapterPosition].titleSaved = true
                     }
                 }
@@ -64,7 +63,8 @@ class AbilityAdapter(private var abilityList: List<AbilityData>, var frag : Abil
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.abilityList[adapterPosition].body = p0
+                        //adapter.abilityList[adapterPosition].body = p0
+                        adapter.abilityList[adapterPosition].body = p0.toString()
                         adapter.abilityList[adapterPosition].bodySaved = true
                     }
                 }
@@ -93,7 +93,8 @@ class AbilityAdapter(private var abilityList: List<AbilityData>, var frag : Abil
             with(abilityList[position]){
                 // set name of the language from the list
                 if(abilityList[position].titleSaved) {
-                    view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
@@ -106,7 +107,8 @@ class AbilityAdapter(private var abilityList: List<AbilityData>, var frag : Abil
                 // which will also make the visibility of desc also visible
 
                 if(abilityList[position].bodySaved) {
-                    view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body

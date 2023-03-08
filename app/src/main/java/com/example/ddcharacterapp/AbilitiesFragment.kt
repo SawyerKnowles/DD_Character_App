@@ -6,19 +6,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.adapter.AbilityAdapter
-import com.example.ddcharacterapp.adapter.InventoryAdapter
-import com.example.ddcharacterapp.adapter.NotesAdapter
+import com.example.ddcharacterapp.data.AbilityData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AbilitiesFragment : Fragment() {
 
-    var abilityList = mutableListOf<AbilityData>()
+    var abilityList = ArrayList<AbilityData>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +23,17 @@ class AbilitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
+        Log.d("AbilityFragment", "AbilityFragment created.")
+        val mainAct =  (activity as MainActivity)
+        abilityList = mainAct.dataManager.abilitiesData.abilitiesDataList // get abilities list from main activity DM
         return inflater.inflate(R.layout.fragment_abilities, container, false)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        val mainAct =  (activity as MainActivity)
+        mainAct.dataManager.abilitiesData.abilitiesDataList = abilityList // set ability list for main activity DM
+        Log.d("AbilityFragment", "AbilityFragment destroyed.")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +55,8 @@ class AbilitiesFragment : Fragment() {
             //view?.findViewById<RecyclerView>(R.id.notes_recycler)?.addView(newNoteView)
             val body = "Ability Description"
             val title = "Ability Title"
-            abilityList.add(AbilityData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
+            //abilityList.add(AbilityData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
+            abilityList.add(AbilityData(title, body, false))
             i++
             recyclerView.adapter = AbilityAdapter(abilityList, this)
 
@@ -65,7 +73,7 @@ class AbilitiesFragment : Fragment() {
 
     fun updateAdapter() {
         val act = (activity as AppCompatActivity)
-        val recyclerView = act.findViewById<RecyclerView>(R.id.notes_recycler)
+        val recyclerView = act.findViewById<RecyclerView>(R.id.abilities_recycler)
         recyclerView.adapter = AbilityAdapter(abilityList, this)
     }
 }

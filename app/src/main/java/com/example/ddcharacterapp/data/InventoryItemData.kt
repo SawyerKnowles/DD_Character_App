@@ -1,10 +1,10 @@
-package com.example.ddcharacterapp
+package com.example.ddcharacterapp.data
 
 import android.text.Editable
 
-data class AbilityData (
-    var title : Editable,
-    var body : Editable,
+class InventoryItemData (
+    var title : String,
+    var body : String,
     var expand : Boolean = false,
     var titleSaved : Boolean = false,
     var bodySaved : Boolean = false

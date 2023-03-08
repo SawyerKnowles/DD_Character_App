@@ -1,10 +1,10 @@
-package com.example.ddcharacterapp
+package com.example.ddcharacterapp.data
 
 import android.text.Editable
 
 data class SpellData (
-    var title : Editable,
-    var body : Editable,
+    var title : String,
+    var body : String,
     var expand : Boolean = false,
     var prepared : Boolean = false,
     var titleSaved : Boolean = false,

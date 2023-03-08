@@ -11,12 +11,10 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ddcharacterapp.InventoryFragment
 import com.example.ddcharacterapp.R
-import com.example.ddcharacterapp.SpellData
+import com.example.ddcharacterapp.data.SpellData
 import com.example.ddcharacterapp.SpellsFragment
 
 class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : SpellsFragment) : RecyclerView.Adapter<SpellAdapter.ViewHolder>() {
@@ -49,7 +47,8 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.spellList[adapterPosition].title = p0
+                        //adapter.spellList[adapterPosition].title = p0
+                        adapter.spellList[adapterPosition].title = p0.toString()
                         adapter.spellList[adapterPosition].titleSaved = true
                     }
                 }
@@ -69,7 +68,8 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
                 override fun afterTextChanged(p0: Editable?) {
                     Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        adapter.spellList[adapterPosition].body = p0
+                        //adapter.spellList[adapterPosition].body = p0
+                        adapter.spellList[adapterPosition].body = p0.toString()
                         adapter.spellList[adapterPosition].bodySaved = true
                     }
                 }
@@ -108,7 +108,8 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
                 // set name of the language from the list
 
                 if(spellList[position].titleSaved) {
-                    view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
+                    view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
@@ -120,7 +121,8 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
                 // which will also make the visibility of desc also visible
 
                 if(spellList[position].bodySaved) {
-                    view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
+                    view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body

@@ -1,30 +1,45 @@
 package com.example.ddcharacterapp
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.MenuProvider
 import androidx.core.view.iterator
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.adapter.CharacterCardAdapter
+import com.example.ddcharacterapp.data.NoteData
+import com.example.ddcharacterapp.data.NotesData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 class MainActivity : AppCompatActivity(), MenuProvider {
+
+    //val actViewModel : DataViewModel by viewModels()
+    //var notesList = ArrayList<NoteData>()
+    //var notesData = NotesData(notesList)
+    var characterListGlobal = ArrayList<CharacterCardData>() // Global List of Character Data
+    var characterIndex = 0 // Global index in characterListGlobal for currently selected character
+    var dataManager = DataManager() // Global DM container - set to Character specific DM in CharacterCardAdapter
 
     /* On Input Listener Functions - Deprecated for Fragment implementation
     private fun addNewCharacterToList(newName: String, newClass: String, newLevel: String) {
@@ -58,9 +73,31 @@ class MainActivity : AppCompatActivity(), MenuProvider {
 
      */
 
+    public fun saveData() {
+        val sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(characterListGlobal)
+        editor.putString("character list", json)
+        editor.apply()
+    }
+
+    public fun loadData() {
+        val sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("character list", null)
+        val type = object : TypeToken<ArrayList<CharacterCardData>>() {}.type
+        if(json == null) {
+            return
+        }
+        characterListGlobal = gson.fromJson(json, type)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.navigation_main)
+
+        loadData()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -68,6 +105,17 @@ class MainActivity : AppCompatActivity(), MenuProvider {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         setupActionBar(navController)
+
+        /*
+        actViewModel.dataList.observe(this, Observer {
+            notesData.notesDataList = it
+        })
+
+         */
+
+        //val body = "Note Body"
+        //val title = "Note Title"
+        //dataManager.notesData.notesDataList.add(NoteData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
 
         /* Add Character without using Navigation
         val addCharButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
@@ -121,7 +169,6 @@ class MainActivity : AppCompatActivity(), MenuProvider {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         removeMenuProvider(this)
-        Log.d("NavUp", "Should be removed")
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
@@ -134,6 +181,12 @@ class MainActivity : AppCompatActivity(), MenuProvider {
         val navController = navHostFragment.navController
         val navigated = NavigationUI.onNavDestinationSelected(menuItem, navController)
         return navigated || super.onOptionsItemSelected(menuItem)
+    }
+
+    override fun onStop() {
+        Log.d("MainActivity", "onStop Called.")
+        saveData()
+        super.onStop()
     }
 /*
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
