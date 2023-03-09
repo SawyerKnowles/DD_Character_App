@@ -8,6 +8,8 @@ data class StatsData (
     var speed : String,
     var initiative : String,
     var pp : String,
+    var proficiencies : String,
+    var deathSaveData : DeathSaveData,
     var str : StrengthData,
     var dex : DexterityData,
     var con : ConstitutionData,

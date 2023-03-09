@@ -199,6 +199,8 @@ class DataManager {
         "",
         "",
         "",
+        "",
+        DeathSaveData(false,false,false,false,false,false),
         initStrengthData,
         initDexterityData,
         initConstitutionData,
