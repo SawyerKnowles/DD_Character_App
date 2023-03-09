@@ -66,7 +66,7 @@ class SpellsFragment : Fragment() {
         Log.d("value check", "CA: $castingAbility SDC: $saveDC atkB: $attackBonus")
         val mainAct =  (activity as MainActivity)
 
-        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
 
         readFromDataManager()
 

@@ -46,6 +46,9 @@ class HomeFragment : Fragment(), OnInputListener {
 
         //view?.findViewById<LinearLayout>(R.id.charLayout)?.addView(newCharView)
         val characterDataManager = DataManager()
+        characterDataManager.traitsData.basicData.name = menuName.text.toString()
+        characterDataManager.traitsData.basicData.characterClass = menuClass.text.toString()
+        characterDataManager.traitsData.basicData.level = menuLevel.text.toString()
         characterList.add(CharacterCardData(menuName.text.toString(), menuClass.text.toString(), menuLevel.text.toString(), characterDataManager))
         val act = (activity as AppCompatActivity) // get activity
         recyclerView.adapter = CharacterCardAdapter(characterList, act)

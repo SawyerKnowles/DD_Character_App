@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.ddcharacterapp.data.*
 import com.google.android.material.chip.Chip
 
@@ -102,6 +103,7 @@ class StatsFragment : Fragment() {
         statsData.wis
         statsData.cha
          */
+        Log.d("StatsFragment", "onCreateView called")
         return inflater.inflate(R.layout.fragment_stats, container, false)
     }
 
@@ -121,7 +123,8 @@ class StatsFragment : Fragment() {
 
         Log.d("StatsFragment", "StatsFragment created.")
         val mainAct =  (activity as MainActivity)
-        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
+
 
         readFromDataManager()
 

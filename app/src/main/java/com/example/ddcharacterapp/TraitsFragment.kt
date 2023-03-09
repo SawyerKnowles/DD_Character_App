@@ -142,7 +142,7 @@ class TraitsFragment : Fragment() {
         Log.d("TraitsFragment", "TraitsFragment created.")
         val mainAct =  (activity as MainActivity)
 
-        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
 
         nameEditText = view.findViewById<EditText>(R.id.charcter_name_editText)
         nameEditText.isSaveEnabled = false

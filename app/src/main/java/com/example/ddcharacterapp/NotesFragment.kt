@@ -42,7 +42,7 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
         Log.d("NotesFragment", "NotesFragment created.")
         val mainAct =  (activity as MainActivity)
 
-        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
 
         notesList = mainAct.dataManager.notesData.notesDataList // get notes list from main activity DM
 

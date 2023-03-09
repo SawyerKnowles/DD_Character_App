@@ -43,7 +43,7 @@ class InventoryFragment : Fragment() {
         Log.d("InventoryFragment", "InventoryFragment created.")
         val mainAct =  (activity as MainActivity)
 
-        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
 
         inventoryList = mainAct.dataManager.inventoryData.inventoryDataList // get inventory list from main activity DM
 

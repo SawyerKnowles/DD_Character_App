@@ -4,9 +4,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.net.toUri
 import androidx.core.view.MenuProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -32,13 +34,17 @@ class CharacterCardAdapter(private var characterList: ArrayList<CharacterCardDat
         with(holder){
             with(characterList[position]){
                 // set name of the language from the list
-                view.findViewById<TextView>(R.id.mName).text = this.charName
+                //view.findViewById<TextView>(R.id.mName).text = this.charName
+                view.findViewById<TextView>(R.id.mName).text = this.charDataManager.traitsData.basicData.name
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
                 // after click on the item we will make the visibility of the "expandedView" visible
                 // which will also make the visibility of desc also visible
-                view.findViewById<TextView>(R.id.mMenuClass).text = this.charClass
-                view.findViewById<TextView>(R.id.mMenuLevel).text = this.charLevel
+                //view.findViewById<TextView>(R.id.mMenuClass).text = this.charClass
+                view.findViewById<TextView>(R.id.mMenuClass).text = this.charDataManager.traitsData.basicData.characterClass
+                //view.findViewById<TextView>(R.id.mMenuLevel).text = this.charLevel
+                view.findViewById<TextView>(R.id.mMenuLevel).text = this.charDataManager.traitsData.basicData.level
+                view.findViewById<ImageView>(R.id.mMenuImage).setImageURI(this.charDataManager.traitsData.basicData.picture.toUri())
                 // check if boolean property "extend" is true or false
                 // if it is true make the "extendedView" Visible
                 //view.findViewById<RelativeLayout>(R.id.expanded_view).visibility = if (this.expand) View.VISIBLE else View.GONE
