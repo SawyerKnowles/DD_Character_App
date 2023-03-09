@@ -33,54 +33,42 @@ class SpellsFragment : Fragment() {
     var saveDC = ""
     var attackBonus = ""
 
+    lateinit var castingAbilityEditText : EditText
+    lateinit var saveDCEditText: EditText
+    lateinit var attackBonusEditText: EditText
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        Log.d("SpellsFragment", "SpellsFragment created.")
-        val mainAct =  (activity as MainActivity)
-        castingAbility = mainAct.dataManager.spellsData.castingAbility
-        saveDC = mainAct.dataManager.spellsData.saveDC
-        attackBonus = mainAct.dataManager.spellsData.attackBonus
-        level_0_spell_list = mainAct.dataManager.spellsData.level_0_spell_dataList // get spell list from main activity DM
-        level_1_spell_list = mainAct.dataManager.spellsData.level_1_spell_dataList // get spell list from main activity DM
-        level_2_spell_list = mainAct.dataManager.spellsData.level_2_spell_dataList // get spell list from main activity DM
-        level_3_spell_list = mainAct.dataManager.spellsData.level_3_spell_dataList // get spell list from main activity DM
-        level_4_spell_list = mainAct.dataManager.spellsData.level_4_spell_dataList // get spell list from main activity DM
-        level_5_spell_list = mainAct.dataManager.spellsData.level_5_spell_dataList // get spell list from main activity DM
-        level_6_spell_list = mainAct.dataManager.spellsData.level_6_spell_dataList // get spell list from main activity DM
-        level_7_spell_list = mainAct.dataManager.spellsData.level_7_spell_dataList // get spell list from main activity DM
-        level_8_spell_list = mainAct.dataManager.spellsData.level_8_spell_dataList // get spell list from main activity DM
-        level_9_spell_list = mainAct.dataManager.spellsData.level_9_spell_dataList // get spell list from main activity DM
         return inflater.inflate(R.layout.fragment_spells, container, false)
     }
 
     override fun onDetach() {
-        super.onDetach()
-        val mainAct =  (activity as MainActivity)
-        mainAct.dataManager.spellsData.castingAbility = castingAbility
-        mainAct.dataManager.spellsData.saveDC = saveDC
-        mainAct.dataManager.spellsData.attackBonus = attackBonus
-        mainAct.dataManager.spellsData.level_0_spell_dataList = level_0_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_1_spell_dataList = level_1_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_2_spell_dataList = level_2_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_3_spell_dataList = level_3_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_4_spell_dataList = level_4_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_5_spell_dataList = level_5_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_6_spell_dataList = level_6_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_7_spell_dataList = level_7_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_8_spell_dataList = level_8_spell_list // set spell list for main activity DM
-        mainAct.dataManager.spellsData.level_9_spell_dataList = level_9_spell_list // set spell list for main activity DM
         Log.d("SpellsFragment", "SpellsFragment destroyed.")
+        super.onDetach()
+    }
+
+    override fun onPause() {
+        Log.d("SpellsFragment", "onPause Called.")
+        writeToDataManager()
+        super.onPause()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val act = (activity as AppCompatActivity) // get activity
-        act.supportActionBar?.title = "Character Name"
+
+        Log.d("SpellsFragment", "SpellsFragment created.")
+        Log.d("value check", "CA: $castingAbility SDC: $saveDC atkB: $attackBonus")
+        val mainAct =  (activity as MainActivity)
+
+        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+
+        readFromDataManager()
 
         /*
         val level_0_recycler_view = act.findViewById<RecyclerView>(R.id.level_0_spells_recycler)
@@ -89,58 +77,20 @@ class SpellsFragment : Fragment() {
          */
 
         //Set up casting ability edit text saving
-        val castingAbilityEditText = view.findViewById<EditText>(R.id.casting_ability_editText)
-        castingAbilityEditText.text = Editable.Factory.getInstance().newEditable(castingAbility)
-        castingAbilityEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+        castingAbilityEditText = view.findViewById<EditText>(R.id.casting_ability_editText)
+        castingAbilityEditText.isSaveEnabled = false
+        castingAbilityEditText.setText(castingAbility)
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    castingAbility = p0.toString()
-                }
-            }
-        })
 
         //Set up saveDC edit text saving
-        val saveDCEditText = view.findViewById<EditText>(R.id.saveDC_editText)
-        saveDCEditText.text = Editable.Factory.getInstance().newEditable(saveDC)
-        saveDCEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    saveDC = p0.toString()
-                }
-            }
-        })
+        saveDCEditText = view.findViewById<EditText>(R.id.saveDC_editText)
+        saveDCEditText.isSaveEnabled = false
+        saveDCEditText.setText(saveDC)
 
         //Set up attack bonus edit text saving
-        val attackBonusEditText = view.findViewById<EditText>(R.id.attack_bonus_editText)
-        attackBonusEditText.text = Editable.Factory.getInstance().newEditable(attackBonus)
-        attackBonusEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    attackBonus = p0.toString()
-                }
-            }
-        })
+        attackBonusEditText = view.findViewById<EditText>(R.id.attack_bonus_editText)
+        attackBonusEditText.isSaveEnabled = false
+        attackBonusEditText.setText(attackBonus)
 
 
         val level_0_recycler_view = attachRecyclerList(act, level_0_spell_list, R.id.level_0_spells_recycler)
@@ -337,5 +287,48 @@ class SpellsFragment : Fragment() {
 
         val recyclerView9 = act.findViewById<RecyclerView>(R.id.level_9_spells_recycler)
         recyclerView9.adapter = SpellAdapter(level_9_spell_list, this)
+    }
+
+    private fun readFromDataManager() {
+        val mainAct =  (activity as MainActivity)
+
+        castingAbility = mainAct.dataManager.spellsData.castingAbility
+        saveDC = mainAct.dataManager.spellsData.saveDC
+        attackBonus = mainAct.dataManager.spellsData.attackBonus
+
+        level_0_spell_list = mainAct.dataManager.spellsData.level_0_spell_dataList // get spell list from main activity DM
+        level_1_spell_list = mainAct.dataManager.spellsData.level_1_spell_dataList // get spell list from main activity DM
+        level_2_spell_list = mainAct.dataManager.spellsData.level_2_spell_dataList // get spell list from main activity DM
+        level_3_spell_list = mainAct.dataManager.spellsData.level_3_spell_dataList // get spell list from main activity DM
+        level_4_spell_list = mainAct.dataManager.spellsData.level_4_spell_dataList // get spell list from main activity DM
+        level_5_spell_list = mainAct.dataManager.spellsData.level_5_spell_dataList // get spell list from main activity DM
+        level_6_spell_list = mainAct.dataManager.spellsData.level_6_spell_dataList // get spell list from main activity DM
+        level_7_spell_list = mainAct.dataManager.spellsData.level_7_spell_dataList // get spell list from main activity DM
+        level_8_spell_list = mainAct.dataManager.spellsData.level_8_spell_dataList // get spell list from main activity DM
+        level_9_spell_list = mainAct.dataManager.spellsData.level_9_spell_dataList // get spell list from main activity DM
+
+    }
+
+    private fun writeToDataManager() {
+        val mainAct =  (activity as MainActivity)
+        castingAbility = castingAbilityEditText.text.toString()
+        mainAct.dataManager.spellsData.castingAbility = castingAbility
+
+        saveDC = saveDCEditText.text.toString()
+        mainAct.dataManager.spellsData.saveDC = saveDC
+
+        attackBonus = attackBonusEditText.text.toString()
+        mainAct.dataManager.spellsData.attackBonus = attackBonus
+
+        mainAct.dataManager.spellsData.level_0_spell_dataList = level_0_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_1_spell_dataList = level_1_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_2_spell_dataList = level_2_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_3_spell_dataList = level_3_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_4_spell_dataList = level_4_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_5_spell_dataList = level_5_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_6_spell_dataList = level_6_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_7_spell_dataList = level_7_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_8_spell_dataList = level_8_spell_list // set spell list for main activity DM
+        mainAct.dataManager.spellsData.level_9_spell_dataList = level_9_spell_list // set spell list for main activity DM
     }
 }

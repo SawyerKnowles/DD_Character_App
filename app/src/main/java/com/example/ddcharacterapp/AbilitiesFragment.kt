@@ -23,24 +23,28 @@ class AbilitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        Log.d("AbilityFragment", "AbilityFragment created.")
-        val mainAct =  (activity as MainActivity)
-        abilityList = mainAct.dataManager.abilitiesData.abilitiesDataList // get abilities list from main activity DM
         return inflater.inflate(R.layout.fragment_abilities, container, false)
     }
 
     override fun onDetach() {
-        super.onDetach()
+
         val mainAct =  (activity as MainActivity)
         mainAct.dataManager.abilitiesData.abilitiesDataList = abilityList // set ability list for main activity DM
         Log.d("AbilityFragment", "AbilityFragment destroyed.")
+        super.onDetach()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val act = (activity as AppCompatActivity) // get activity
-        act.supportActionBar?.title = "Character Name"
+
+        Log.d("AbilityFragment", "AbilityFragment created.")
+        val mainAct =  (activity as MainActivity)
+
+        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+
+        abilityList = mainAct.dataManager.abilitiesData.abilitiesDataList // get abilities list from main activity DM
 
         val recyclerView = act.findViewById<RecyclerView>(R.id.abilities_recycler)
         //val notesList = mutableListOf<NoteData>()

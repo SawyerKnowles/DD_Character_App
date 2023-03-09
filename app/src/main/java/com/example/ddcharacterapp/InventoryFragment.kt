@@ -24,24 +24,28 @@ class InventoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        Log.d("InventoryFragment", "InventoryFragment created.")
-        val mainAct =  (activity as MainActivity)
-        inventoryList = mainAct.dataManager.inventoryData.inventoryDataList // get inventory list from main activity DM
         return inflater.inflate(R.layout.fragment_inventory, container, false)
     }
 
     override fun onDetach() {
-        super.onDetach()
+
         val mainAct =  (activity as MainActivity)
         mainAct.dataManager.inventoryData.inventoryDataList = inventoryList // set inventory list for main activity DM
         Log.d("InventoryFragment", "InventoryFragment destroyed.")
+        super.onDetach()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val act = (activity as AppCompatActivity) // get activity
-        act.supportActionBar?.title = "Character Name"
+
+        Log.d("InventoryFragment", "InventoryFragment created.")
+        val mainAct =  (activity as MainActivity)
+
+        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+
+        inventoryList = mainAct.dataManager.inventoryData.inventoryDataList // get inventory list from main activity DM
 
         recyclerView = act.findViewById<RecyclerView>(R.id.inventory_recycler)
         //val notesList = mutableListOf<NoteData>()

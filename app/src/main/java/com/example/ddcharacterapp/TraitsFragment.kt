@@ -1,6 +1,7 @@
 package com.example.ddcharacterapp
 
 import android.app.Activity
+import android.app.BackgroundServiceStartNotAllowedException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.bumptech.glide.Glide
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.*
+import org.w3c.dom.Text
 
 class TraitsFragment : Fragment() {
 
@@ -35,6 +37,35 @@ class TraitsFragment : Fragment() {
     var bonds = ""
     var flaws = ""
     var background = ""
+
+    lateinit var nameEditText : EditText
+    lateinit var classEditText : EditText
+    lateinit var levelEditText : EditText
+    lateinit var raceEditText : EditText
+    lateinit var alignmentEditText : EditText
+    lateinit var personalityEditText: EditText
+    lateinit var idealsEditText: EditText
+    lateinit var bondsEditText: EditText
+    lateinit var flawsEditText: EditText
+    lateinit var backgroundEditText: EditText
+
+    /*
+    var nameTW = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+            if (p0 != null) {
+                name = p0.toString()
+                Log.d("name2", name)
+            }
+        }
+    }
+
+     */
 
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->
         if (result.isSuccessful) {
@@ -89,51 +120,40 @@ class TraitsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("TraitsFragment", "TraitsFragment created.")
-        val mainAct =  (activity as MainActivity)
-        characterImage = mainAct.dataManager.traitsData.basicData.picture.toUri()
-        name = mainAct.dataManager.traitsData.basicData.name
-        characterClass = mainAct.dataManager.traitsData.basicData.characterClass
-        level = mainAct.dataManager.traitsData.basicData.level
-        race = mainAct.dataManager.traitsData.basicData.race
-        alignment = mainAct.dataManager.traitsData.basicData.alignment
-        personality = mainAct.dataManager.traitsData.complexData.personality
-        ideals = mainAct.dataManager.traitsData.complexData.ideals
-        bonds = mainAct.dataManager.traitsData.complexData.bonds
-        flaws = mainAct.dataManager.traitsData.complexData.flaws
-        background = mainAct.dataManager.traitsData.complexData.background
         //return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_traits, container, false)
     }
 
     override fun onDetach() {
-        super.onDetach()
-        val mainAct =  (activity as MainActivity)
-        mainAct.dataManager.traitsData.basicData.picture = characterImage.toString()
-        mainAct.dataManager.traitsData.basicData.name = name
-        mainAct.dataManager.traitsData.basicData.characterClass = characterClass
-        mainAct.dataManager.traitsData.basicData.level = level
-        mainAct.dataManager.traitsData.basicData.race = race
-        mainAct.dataManager.traitsData.basicData.alignment = alignment
-        mainAct.dataManager.traitsData.complexData.personality = personality
-        mainAct.dataManager.traitsData.complexData.ideals = ideals
-        mainAct.dataManager.traitsData.complexData.bonds = bonds
-        mainAct.dataManager.traitsData.complexData.flaws = flaws
-        mainAct.dataManager.traitsData.complexData.background = background
         Log.d("TraitsFragment", "TraitsFragment destroyed.")
+        super.onDetach()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val act = (activity as AppCompatActivity) // get activity
-        act.supportActionBar?.title = "Character Name"
+
+        readFromDataManager()
 
         val image = view.findViewById<ImageView>(R.id.character_image)
         image.setImageURI(characterImage)
 
-        val nameEditText = view.findViewById<EditText>(R.id.charcter_name_editText)
-        nameEditText.text = Editable.Factory.getInstance().newEditable(name)
+        Log.d("TraitsFragment", "TraitsFragment created.")
+        val mainAct =  (activity as MainActivity)
+
+        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+
+        nameEditText = view.findViewById<EditText>(R.id.charcter_name_editText)
+        nameEditText.isSaveEnabled = false
+        //nameEditText.text = Editable.Factory.getInstance().newEditable(name)
+        Log.d("name", name)
+        nameEditText.setText(name)
+        //nameEditTextTest = nameEditText
+        Log.d("name2", name)
+
+        //nameEditText.addTextChangedListener(nameTW)
+        /*
         nameEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -145,12 +165,19 @@ class TraitsFragment : Fragment() {
             override fun afterTextChanged(p0: Editable?) {
                 if (p0 != null) {
                     name = p0.toString()
+                    Log.d("name2", name)
                 }
             }
         })
 
-        val classEditText = view.findViewById<EditText>(R.id.class_editText)
-        classEditText.text = Editable.Factory.getInstance().newEditable(characterClass)
+         */
+
+
+        classEditText = view.findViewById<EditText>(R.id.class_editText)
+        classEditText.isSaveEnabled = false
+        //classEditText.text = Editable.Factory.getInstance().newEditable(characterClass)
+        classEditText.setText(characterClass)
+        /*
         classEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -165,9 +192,13 @@ class TraitsFragment : Fragment() {
                 }
             }
         })
+        */
 
-        val levelEditText = view.findViewById<EditText>(R.id.level_editText)
-        levelEditText.text = Editable.Factory.getInstance().newEditable(level)
+        levelEditText = view.findViewById<EditText>(R.id.level_editText)
+        //levelEditText.text = Editable.Factory.getInstance().newEditable(level)
+        levelEditText.isSaveEnabled = false
+        levelEditText.setText(level)
+        /*
         levelEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -183,8 +214,13 @@ class TraitsFragment : Fragment() {
             }
         })
 
-        val raceEditText = view.findViewById<EditText>(R.id.race_editText)
-        raceEditText.text = Editable.Factory.getInstance().newEditable(race)
+         */
+
+        raceEditText = view.findViewById<EditText>(R.id.race_editText)
+        //raceEditText.text = Editable.Factory.getInstance().newEditable(race)
+        raceEditText.isSaveEnabled = false
+        raceEditText.setText(race)
+        /*
         raceEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -199,9 +235,13 @@ class TraitsFragment : Fragment() {
                 }
             }
         })
+         */
 
-        val alignmentEditText = view.findViewById<EditText>(R.id.alignment_editText)
-        alignmentEditText.text = Editable.Factory.getInstance().newEditable(alignment)
+        alignmentEditText = view.findViewById<EditText>(R.id.alignment_editText)
+        //alignmentEditText.text = Editable.Factory.getInstance().newEditable(alignment)
+        alignmentEditText.isSaveEnabled = false
+        alignmentEditText.setText(alignment)
+        /*
         alignmentEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -217,8 +257,13 @@ class TraitsFragment : Fragment() {
             }
         })
 
-        val personalityEditText = view.findViewById<EditText>(R.id.personality_editText)
-        personalityEditText.text = Editable.Factory.getInstance().newEditable(personality)
+         */
+
+        personalityEditText = view.findViewById<EditText>(R.id.personality_editText)
+        //personalityEditText.text = Editable.Factory.getInstance().newEditable(personality)
+        personalityEditText.isSaveEnabled = false
+        personalityEditText.setText(personality)
+        /*
         personalityEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -234,8 +279,13 @@ class TraitsFragment : Fragment() {
             }
         })
 
-        val idealsEditText = view.findViewById<EditText>(R.id.ideals_editText)
-        idealsEditText.text = Editable.Factory.getInstance().newEditable(ideals)
+         */
+
+        idealsEditText = view.findViewById<EditText>(R.id.ideals_editText)
+        //idealsEditText.text = Editable.Factory.getInstance().newEditable(ideals)
+        idealsEditText.isSaveEnabled = false
+        idealsEditText.setText(ideals)
+        /*
         idealsEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -251,8 +301,13 @@ class TraitsFragment : Fragment() {
             }
         })
 
-        val bondsEditText = view.findViewById<EditText>(R.id.bonds_editText)
-        bondsEditText.text = Editable.Factory.getInstance().newEditable(bonds)
+         */
+
+        bondsEditText = view.findViewById<EditText>(R.id.bonds_editText)
+        //bondsEditText.text = Editable.Factory.getInstance().newEditable(bonds)
+        bondsEditText.isSaveEnabled = false
+        bondsEditText.setText(bonds)
+        /*
         bondsEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -268,8 +323,13 @@ class TraitsFragment : Fragment() {
             }
         })
 
-        val flawsEditText = view.findViewById<EditText>(R.id.flaws_editText)
-        flawsEditText.text = Editable.Factory.getInstance().newEditable(flaws)
+         */
+
+        flawsEditText = view.findViewById<EditText>(R.id.flaws_editText)
+        //flawsEditText.text = Editable.Factory.getInstance().newEditable(flaws)
+        flawsEditText.isSaveEnabled = false
+        flawsEditText.setText(flaws)
+        /*
         flawsEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -285,8 +345,13 @@ class TraitsFragment : Fragment() {
             }
         })
 
-        val backgroundEditText = view.findViewById<EditText>(R.id.background_editText)
-        backgroundEditText.text = Editable.Factory.getInstance().newEditable(background)
+         */
+
+        backgroundEditText = view.findViewById<EditText>(R.id.background_editText)
+        //backgroundEditText.text = Editable.Factory.getInstance().newEditable(background)
+        backgroundEditText.isSaveEnabled = false
+        backgroundEditText.setText(background)
+        /*
         backgroundEditText.addTextChangedListener(object :
             TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -302,6 +367,8 @@ class TraitsFragment : Fragment() {
             }
         })
 
+         */
+
         val characterImage = act.findViewById<ImageView>(R.id.character_image)
         characterImage.setOnClickListener() {
             pickFromGallery()
@@ -316,5 +383,74 @@ class TraitsFragment : Fragment() {
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         imageFromGallery.launch(intent)
+    }
+
+    private fun readFromDataManager() {
+        val mainAct =  (activity as MainActivity)
+
+        characterImage = mainAct.dataManager.traitsData.basicData.picture.toUri()
+
+        name = mainAct.dataManager.traitsData.basicData.name
+
+        characterClass = mainAct.dataManager.traitsData.basicData.characterClass
+
+        level = mainAct.dataManager.traitsData.basicData.level
+
+        race = mainAct.dataManager.traitsData.basicData.race
+
+        alignment = mainAct.dataManager.traitsData.basicData.alignment
+
+        personality = mainAct.dataManager.traitsData.complexData.personality
+
+        ideals = mainAct.dataManager.traitsData.complexData.ideals
+
+        bonds = mainAct.dataManager.traitsData.complexData.bonds
+
+        flaws = mainAct.dataManager.traitsData.complexData.flaws
+
+        background = mainAct.dataManager.traitsData.complexData.background
+    }
+
+    private fun writeToDataManager() {
+        val mainAct =  (activity as MainActivity)
+        mainAct.dataManager.traitsData.basicData.picture = characterImage.toString()
+
+        name = nameEditText.text.toString()
+        Log.d("name3", name)
+        //nameEditText.removeTextChangedListener(nameTW)
+        mainAct.dataManager.traitsData.basicData.name = name
+
+        characterClass = classEditText.text.toString()
+        mainAct.dataManager.traitsData.basicData.characterClass = characterClass
+
+        level = levelEditText.text.toString()
+        mainAct.dataManager.traitsData.basicData.level = level
+
+        race = raceEditText.text.toString()
+        mainAct.dataManager.traitsData.basicData.race = race
+
+        alignment = alignmentEditText.text.toString()
+        mainAct.dataManager.traitsData.basicData.alignment = alignment
+
+        personality = personalityEditText.text.toString()
+        mainAct.dataManager.traitsData.complexData.personality = personality
+
+        ideals = idealsEditText.text.toString()
+        mainAct.dataManager.traitsData.complexData.ideals = ideals
+
+        bonds = bondsEditText.text.toString()
+        mainAct.dataManager.traitsData.complexData.bonds = bonds
+
+        flaws = flawsEditText.text.toString()
+        mainAct.dataManager.traitsData.complexData.flaws = flaws
+
+        background = backgroundEditText.text.toString()
+        mainAct.dataManager.traitsData.complexData.background = background
+    }
+
+    override fun onPause() {
+        Log.d("TraitsFragment", "onPause Called.")
+        writeToDataManager()
+        super.onPause()
     }
 }

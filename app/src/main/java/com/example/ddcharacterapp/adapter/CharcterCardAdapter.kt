@@ -48,6 +48,7 @@ class CharacterCardAdapter(private var characterList: ArrayList<CharacterCardDat
                     //this.expand = !this.expand
                     Log.d("Character Card Click", "Character " + this.charName + " card clicked")
                     (activity as MainActivity).dataManager = this.charDataManager // set main activity DM to selected Character's DM
+                    Log.d("check", (activity as MainActivity).dataManager.toString())
                     (activity as MainActivity).characterIndex = adapterPosition
                     activity.addMenuProvider((activity) as MenuProvider)
                     view.findNavController().navigate(R.id.destination_stats)

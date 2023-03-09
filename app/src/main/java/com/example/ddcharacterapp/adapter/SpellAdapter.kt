@@ -37,15 +37,15 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
             view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
+                    //Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
+                    //Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
+                    //Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
                         //adapter.spellList[adapterPosition].title = p0
                         adapter.spellList[adapterPosition].title = p0.toString()
@@ -58,15 +58,15 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
             view.findViewById<EditText>(R.id.tv_description).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
+                    //Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
+                    //Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
+                    //Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
                         //adapter.spellList[adapterPosition].body = p0
                         adapter.spellList[adapterPosition].body = p0.toString()

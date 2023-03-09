@@ -23,25 +23,28 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        Log.d("NotesFragment", "NotesFragment created.")
-        val mainAct =  (activity as MainActivity)
-        notesList = mainAct.dataManager.notesData.notesDataList // get notes list from main activity DM
         return inflater.inflate(R.layout.fragment_notes, container, false)
 
     }
 
     override fun onDetach() {
-        super.onDetach()
         val mainAct =  (activity as MainActivity)
         mainAct.dataManager.notesData.notesDataList = notesList // set notes list for main activity DM
         Log.d("NotesFragment", "NotesFragment destroyed.")
+        super.onDetach()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val act = (activity as AppCompatActivity) // get activity
-        act.supportActionBar?.title = "Character Name"
+
+        Log.d("NotesFragment", "NotesFragment created.")
+        val mainAct =  (activity as MainActivity)
+
+        mainAct.supportActionBar?.title = mainAct.characterListGlobal[mainAct.characterIndex].charName
+
+        notesList = mainAct.dataManager.notesData.notesDataList // get notes list from main activity DM
 
 
         //notesList = mainAct.getNotesData().notesDataList
