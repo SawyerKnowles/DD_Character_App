@@ -91,7 +91,7 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
             with(notesList[position]){
-                // set name of the language from the list
+                // set title from the list
                 if(notesList[position].titleSaved) {
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }

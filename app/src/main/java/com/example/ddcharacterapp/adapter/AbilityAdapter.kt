@@ -81,7 +81,7 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
             with(abilityList[position]){
-                // set name of the language from the list
+                // set title from the list
                 if(abilityList[position].titleSaved) {
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
@@ -93,7 +93,6 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
                 // since this is inside "expandedView" its visibility will be gone initially
                 // after click on the item we will make the visibility of the "expandedView" visible
                 // which will also make the visibility of desc also visible
-
                 if(abilityList[position].bodySaved) {
                     view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }

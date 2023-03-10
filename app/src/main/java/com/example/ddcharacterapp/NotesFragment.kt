@@ -63,8 +63,6 @@ class NotesFragment : Fragment(), RecyclerViewInterface {
             i++
             recyclerView.adapter = NotesAdapter(notesList, this)
             (recyclerView.adapter as NotesAdapter).notifyItemInserted(notesList.size-1)
-            notesList.forEach { Log.d("notesList", it.title.toString()) }
-            Log.d("Separator", "---------------")
         }
     }
 

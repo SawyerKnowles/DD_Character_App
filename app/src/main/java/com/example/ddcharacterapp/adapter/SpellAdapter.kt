@@ -95,8 +95,7 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
             with(spellList[position]){
-                // set name of the language from the list
-
+                // set title from the list
                 if(spellList[position].titleSaved) {
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }

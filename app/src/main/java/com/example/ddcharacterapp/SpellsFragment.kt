@@ -60,7 +60,6 @@ class SpellsFragment : Fragment() {
         val act = (activity as AppCompatActivity) // get activity
 
         Log.d("SpellsFragment", "SpellsFragment created.")
-        Log.d("value check", "CA: $castingAbility SDC: $saveDC atkB: $attackBonus")
         val mainAct =  (activity as MainActivity)
 
         mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name

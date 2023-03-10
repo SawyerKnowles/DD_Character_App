@@ -81,8 +81,7 @@ class InventoryAdapter(private var inventoryList: ArrayList<InventoryItemData>, 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
             with(inventoryList[position]){
-                // set name of the language from the list
-
+                // set title from the list
                 if(inventoryList[position].titleSaved) {
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
