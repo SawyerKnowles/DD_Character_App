@@ -3,6 +3,7 @@ package com.example.ddcharacterapp
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
@@ -124,7 +125,6 @@ class StatsFragment : Fragment() {
         Log.d("StatsFragment", "StatsFragment created.")
         val mainAct =  (activity as MainActivity)
         mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
-
 
         readFromDataManager()
 
@@ -357,6 +357,52 @@ class StatsFragment : Fragment() {
 
         chaPersuasionCheckBox = view.findViewById(R.id.CHA_persuasion)
         setCheckBox(chaPersuasionCheckBox, statsData.cha.persuasion)
+
+        //Change HP
+        val changeHP = view.findViewById<EditText>(R.id.changeHP_editText)
+        val healButton = view.findViewById<Button>(R.id.HP_add_button)
+        healButton.setOnClickListener() {
+            val heal = changeHP.text.toString().toInt()
+            var hp = hpEditText.text.toString().toInt()
+            hp += heal
+            hpEditText.setText(hp.toString())
+        }
+
+        val damageButton = view.findViewById<Button>(R.id.HP_sub_button)
+        damageButton.setOnClickListener() {
+            val damage = changeHP.text.toString().toInt()
+
+            val tHPString = tempHPEditText.text.toString()
+            var tempHP : Int
+            if(tHPString == "") {
+                tempHP = 0
+            }
+            else {
+                tempHP = tHPString.toInt()
+            }
+
+            var hp = hpEditText.text.toString().toInt()
+
+            if(tempHP > 0) {
+                tempHP -= damage
+            }
+            else {
+                hp -= damage
+            }
+
+            if(tempHP < 0) {
+                hp -= (tempHP * -1)
+                tempHP = 0
+            }
+
+            if(tempHP == 0) {
+                tempHPEditText.text = null
+            }
+            else {
+                tempHPEditText.setText(tempHP.toString())
+            }
+            hpEditText.setText(hp.toString())
+        }
     }
 
     private fun setEditText(editText: EditText, string : String) {
