@@ -1,13 +1,10 @@
 package com.example.ddcharacterapp
 
 import android.app.Activity
-import android.app.BackgroundServiceStartNotAllowedException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +19,6 @@ import com.bumptech.glide.Glide
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.*
-import org.w3c.dom.Text
 
 class TraitsFragment : Fragment() {
 
@@ -30,42 +26,24 @@ class TraitsFragment : Fragment() {
     var name = ""
     var characterClass = ""
     var level = ""
-    var race = ""
-    var alignment = ""
-    var personality = ""
-    var ideals = ""
-    var bonds = ""
-    var flaws = ""
-    var background = ""
+    private var race = ""
+    private var alignment = ""
+    private var personality = ""
+    private var ideals = ""
+    private var bonds = ""
+    private var flaws = ""
+    private var background = ""
 
-    lateinit var nameEditText : EditText
-    lateinit var classEditText : EditText
-    lateinit var levelEditText : EditText
-    lateinit var raceEditText : EditText
-    lateinit var alignmentEditText : EditText
-    lateinit var personalityEditText: EditText
-    lateinit var idealsEditText: EditText
-    lateinit var bondsEditText: EditText
-    lateinit var flawsEditText: EditText
-    lateinit var backgroundEditText: EditText
-
-    /*
-    var nameTW = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            if (p0 != null) {
-                name = p0.toString()
-                Log.d("name2", name)
-            }
-        }
-    }
-
-     */
+    private lateinit var nameEditText : EditText
+    private lateinit var classEditText : EditText
+    private lateinit var levelEditText : EditText
+    private lateinit var raceEditText : EditText
+    private lateinit var alignmentEditText : EditText
+    private lateinit var personalityEditText: EditText
+    private lateinit var idealsEditText: EditText
+    private lateinit var bondsEditText: EditText
+    private lateinit var flawsEditText: EditText
+    private lateinit var backgroundEditText: EditText
 
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->
         if (result.isSuccessful) {
@@ -120,7 +98,6 @@ class TraitsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_traits, container, false)
     }
 
@@ -144,230 +121,46 @@ class TraitsFragment : Fragment() {
 
         mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
 
-        nameEditText = view.findViewById<EditText>(R.id.charcter_name_editText)
+        nameEditText = view.findViewById(R.id.charcter_name_editText)
         nameEditText.isSaveEnabled = false
-        //nameEditText.text = Editable.Factory.getInstance().newEditable(name)
-        Log.d("name", name)
         nameEditText.setText(name)
-        //nameEditTextTest = nameEditText
-        Log.d("name2", name)
-
-        //nameEditText.addTextChangedListener(nameTW)
-        /*
-        nameEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    name = p0.toString()
-                    Log.d("name2", name)
-                }
-            }
-        })
-
-         */
 
 
-        classEditText = view.findViewById<EditText>(R.id.class_editText)
+        classEditText = view.findViewById(R.id.class_editText)
         classEditText.isSaveEnabled = false
-        //classEditText.text = Editable.Factory.getInstance().newEditable(characterClass)
         classEditText.setText(characterClass)
-        /*
-        classEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    characterClass = p0.toString()
-                }
-            }
-        })
-        */
-
-        levelEditText = view.findViewById<EditText>(R.id.level_editText)
-        //levelEditText.text = Editable.Factory.getInstance().newEditable(level)
+        levelEditText = view.findViewById(R.id.level_editText)
         levelEditText.isSaveEnabled = false
         levelEditText.setText(level)
-        /*
-        levelEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    level = p0.toString()
-                }
-            }
-        })
-
-         */
-
-        raceEditText = view.findViewById<EditText>(R.id.race_editText)
-        //raceEditText.text = Editable.Factory.getInstance().newEditable(race)
+        raceEditText = view.findViewById(R.id.race_editText)
         raceEditText.isSaveEnabled = false
         raceEditText.setText(race)
-        /*
-        raceEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    race = p0.toString()
-                }
-            }
-        })
-         */
-
-        alignmentEditText = view.findViewById<EditText>(R.id.alignment_editText)
-        //alignmentEditText.text = Editable.Factory.getInstance().newEditable(alignment)
+        alignmentEditText = view.findViewById(R.id.alignment_editText)
         alignmentEditText.isSaveEnabled = false
         alignmentEditText.setText(alignment)
-        /*
-        alignmentEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    alignment = p0.toString()
-                }
-            }
-        })
-
-         */
-
-        personalityEditText = view.findViewById<EditText>(R.id.personality_editText)
-        //personalityEditText.text = Editable.Factory.getInstance().newEditable(personality)
+        personalityEditText = view.findViewById(R.id.personality_editText)
         personalityEditText.isSaveEnabled = false
         personalityEditText.setText(personality)
-        /*
-        personalityEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    personality = p0.toString()
-                }
-            }
-        })
-
-         */
-
-        idealsEditText = view.findViewById<EditText>(R.id.ideals_editText)
-        //idealsEditText.text = Editable.Factory.getInstance().newEditable(ideals)
+        idealsEditText = view.findViewById(R.id.ideals_editText)
         idealsEditText.isSaveEnabled = false
         idealsEditText.setText(ideals)
-        /*
-        idealsEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    ideals = p0.toString()
-                }
-            }
-        })
-
-         */
-
-        bondsEditText = view.findViewById<EditText>(R.id.bonds_editText)
-        //bondsEditText.text = Editable.Factory.getInstance().newEditable(bonds)
+        bondsEditText = view.findViewById(R.id.bonds_editText)
         bondsEditText.isSaveEnabled = false
         bondsEditText.setText(bonds)
-        /*
-        bondsEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    bonds = p0.toString()
-                }
-            }
-        })
-
-         */
-
-        flawsEditText = view.findViewById<EditText>(R.id.flaws_editText)
-        //flawsEditText.text = Editable.Factory.getInstance().newEditable(flaws)
+        flawsEditText = view.findViewById(R.id.flaws_editText)
         flawsEditText.isSaveEnabled = false
         flawsEditText.setText(flaws)
-        /*
-        flawsEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    flaws = p0.toString()
-                }
-            }
-        })
-
-         */
-
-        backgroundEditText = view.findViewById<EditText>(R.id.background_editText)
-        //backgroundEditText.text = Editable.Factory.getInstance().newEditable(background)
+        backgroundEditText = view.findViewById(R.id.background_editText)
         backgroundEditText.isSaveEnabled = false
         backgroundEditText.setText(background)
-        /*
-        backgroundEditText.addTextChangedListener(object :
-            TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (p0 != null) {
-                    background = p0.toString()
-                }
-            }
-        })
-
-         */
 
         val characterImage = act.findViewById<ImageView>(R.id.character_image)
         characterImage.setOnClickListener() {

@@ -2,7 +2,6 @@ package com.example.ddcharacterapp.adapter
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,6 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
         init {
             // Define click listener for the ViewHolder's View
             view.findViewById<Button>(R.id.spells_item_delete_button).setOnClickListener() {
-                //adapter.notesList.removeAt(adapterPosition)
                 adapter.spellList.removeAt(adapterPosition)
                 adapter.frag.updateAdapters()
                 adapter.notifyItemRemoved(adapterPosition)
@@ -37,17 +35,13 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
             view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    //Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    //Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    //Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.spellList[adapterPosition].title = p0
                         adapter.spellList[adapterPosition].title = p0.toString()
                         adapter.spellList[adapterPosition].titleSaved = true
                     }
@@ -58,17 +52,13 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
             view.findViewById<EditText>(R.id.tv_description).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    //Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    //Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    //Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.spellList[adapterPosition].body = p0
                         adapter.spellList[adapterPosition].body = p0.toString()
                         adapter.spellList[adapterPosition].bodySaved = true
                     }
@@ -86,7 +76,7 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
             })
         }
 
-        public fun linkAdapter(adapter : SpellAdapter) : SpellAdapter.ViewHolder {
+        fun linkAdapter(adapter : SpellAdapter) : SpellAdapter.ViewHolder {
             this.adapter = adapter
             return this
         }
@@ -108,20 +98,17 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
                 // set name of the language from the list
 
                 if(spellList[position].titleSaved) {
-                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
                 }
-                //view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
+
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
                 // after click on the item we will make the visibility of the "expandedView" visible
                 // which will also make the visibility of desc also visible
-
                 if(spellList[position].bodySaved) {
-                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
                     view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
@@ -129,7 +116,6 @@ class SpellAdapter(private var spellList: ArrayList<SpellData>, var frag : Spell
                 }
 
                 view.findViewById<CheckBox>(R.id.spell_prep_checkbox).isChecked = spellList[position].prepared
-                //view.findViewById<EditText>(R.id.tv_description).hint = this.body
 
                 // check if boolean property "extend" is true or false
                 // if it is true make the "extendedView" Visible

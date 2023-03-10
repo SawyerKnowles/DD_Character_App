@@ -1,6 +1,5 @@
 package com.example.ddcharacterapp
 
-import android.net.Uri
 import com.example.ddcharacterapp.data.*
 
 class DataManager {

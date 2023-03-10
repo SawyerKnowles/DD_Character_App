@@ -2,7 +2,6 @@ package com.example.ddcharacterapp.adapter
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,39 +27,23 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
         init {
             // Define click listener for the ViewHolder's View
             view.findViewById<Button>(R.id.notes_item_delete_button).setOnClickListener() {
-                //adapter.notesList.removeAt(adapterPosition)
                 adapter.frag.onDeletePressed(adapterPosition)
                 adapter.notifyItemRemoved(adapterPosition)
                 adapter.notifyItemRangeChanged(0, adapter.notesList.size)
                 adapter.notifyDataSetChanged()
             }
 
-            /* Save Using Button
-            view.findViewById<Button>(R.id.notes_item_save_button).setOnClickListener {
-                var title = view.findViewById<EditText>(R.id.tv_lang_name).text.toString()
-                var body = view.findViewById<EditText>(R.id.tv_description).text.toString()
-                adapter.frag.onSavePressed(adapterPosition, title, body)
-                adapter.notifyItemChanged(adapterPosition)
-                adapter.notifyDataSetChanged()
-
-            }
-             */
-
             // Save Using TextListener
             view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.notesList[adapterPosition].title = p0
                         adapter.notesList[adapterPosition].title = p0.toString()
                         adapter.notesList[adapterPosition].titleSaved = true
                     }
@@ -71,17 +54,13 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
             view.findViewById<EditText>(R.id.tv_description).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.notesList[adapterPosition].body = p0
                         adapter.notesList[adapterPosition].body = p0.toString()
                         adapter.notesList[adapterPosition].bodySaved = true
                     }
@@ -90,7 +69,7 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
             })
         }
 
-        public fun linkAdapter(adapter : NotesAdapter) : ViewHolder {
+        fun linkAdapter(adapter : NotesAdapter) : ViewHolder {
             this.adapter = adapter
             return this
         }
@@ -100,7 +79,6 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesAdapter.ViewHolder {
         //create new view
         val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.notes_item, parent,false)
-        //return NotesAdapter.ViewHolder(adapterLayout)
         return NotesAdapter.ViewHolder(adapterLayout).linkAdapter(this)
     }
 
@@ -114,15 +92,12 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
         with(holder){
             with(notesList[position]){
                 // set name of the language from the list
-
                 if(notesList[position].titleSaved) {
-                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
                 }
-                //view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
 
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
@@ -130,13 +105,11 @@ class NotesAdapter(private var notesList: ArrayList<NoteData>, var frag : NotesF
                 // which will also make the visibility of desc also visible
 
                 if(notesList[position].bodySaved) {
-                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
                     view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body
                 }
-                //view.findViewById<EditText>(R.id.tv_description).hint = this.body
 
                 // check if boolean property "extend" is true or false
                 // if it is true make the "extendedView" Visible

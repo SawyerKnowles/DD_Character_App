@@ -1,7 +1,6 @@
 package com.example.ddcharacterapp
 
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,16 +22,19 @@ class InventoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_inventory, container, false)
     }
 
     override fun onDetach() {
-
-        val mainAct =  (activity as MainActivity)
-        mainAct.dataManager.inventoryData.inventoryDataList = inventoryList // set inventory list for main activity DM
         Log.d("InventoryFragment", "InventoryFragment destroyed.")
         super.onDetach()
+    }
+
+    override fun onPause() {
+        Log.d("InventoryFragment", "onPause called.")
+        val mainAct =  (activity as MainActivity)
+        mainAct.dataManager.inventoryData.inventoryDataList = inventoryList // set inventory list for main activity DM
+        super.onPause()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,19 +50,15 @@ class InventoryFragment : Fragment() {
         inventoryList = mainAct.dataManager.inventoryData.inventoryDataList // get inventory list from main activity DM
 
         recyclerView = act.findViewById<RecyclerView>(R.id.inventory_recycler)
-        //val notesList = mutableListOf<NoteData>()
+
         recyclerView.adapter = InventoryAdapter(inventoryList, this)
 
         var i = 0
 
         val inventoryFAB = act.findViewById<FloatingActionButton>(R.id.inventoryFAB)
         inventoryFAB.setOnClickListener() {
-
-            //val newNoteView = layoutInflater.inflate(R.layout.list_item, null)
-            //view?.findViewById<RecyclerView>(R.id.notes_recycler)?.addView(newNoteView)
             val body = "Item Body"
             val title = "Item Title"
-            //inventoryList.add(InventoryItemData(Editable.Factory.getInstance().newEditable(title), Editable.Factory.getInstance().newEditable(body), false))
             inventoryList.add(InventoryItemData(title, body, false))
             i++
             recyclerView.adapter = InventoryAdapter(inventoryList, this)
@@ -73,7 +71,7 @@ class InventoryFragment : Fragment() {
         updateAdapter()
     }
 
-    fun updateAdapter() {
+    private fun updateAdapter() {
         val act = (activity as AppCompatActivity)
         val recyclerView = act.findViewById<RecyclerView>(R.id.inventory_recycler)
         recyclerView.adapter = InventoryAdapter(inventoryList, this)

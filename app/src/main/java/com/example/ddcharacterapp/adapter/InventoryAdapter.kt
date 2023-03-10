@@ -2,7 +2,6 @@ package com.example.ddcharacterapp.adapter
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,6 @@ class InventoryAdapter(private var inventoryList: ArrayList<InventoryItemData>, 
         init {
             // Define click listener for the ViewHolder's View
             view.findViewById<Button>(R.id.inventory_item_delete_button).setOnClickListener() {
-                //adapter.notesList.removeAt(adapterPosition)
                 adapter.frag.onDeletePressed(adapterPosition)
                 adapter.notifyItemRemoved(adapterPosition)
                 adapter.notifyItemRangeChanged(0, adapter.inventoryList.size)
@@ -32,17 +30,13 @@ class InventoryAdapter(private var inventoryList: ArrayList<InventoryItemData>, 
             view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.inventoryList[adapterPosition].title = p0
                         adapter.inventoryList[adapterPosition].title = p0.toString()
                         adapter.inventoryList[adapterPosition].titleSaved = true
                     }
@@ -53,17 +47,13 @@ class InventoryAdapter(private var inventoryList: ArrayList<InventoryItemData>, 
             view.findViewById<EditText>(R.id.tv_description).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.inventoryList[adapterPosition].body = p0
                         adapter.inventoryList[adapterPosition].body = p0.toString()
                         adapter.inventoryList[adapterPosition].bodySaved = true
                     }
@@ -72,7 +62,7 @@ class InventoryAdapter(private var inventoryList: ArrayList<InventoryItemData>, 
             })
         }
 
-        public fun linkAdapter(adapter : InventoryAdapter) : InventoryAdapter.ViewHolder {
+        fun linkAdapter(adapter : InventoryAdapter) : InventoryAdapter.ViewHolder {
             this.adapter = adapter
             return this
         }
@@ -94,26 +84,22 @@ class InventoryAdapter(private var inventoryList: ArrayList<InventoryItemData>, 
                 // set name of the language from the list
 
                 if(inventoryList[position].titleSaved) {
-                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
                 }
-                //view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
+
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
                 // after click on the item we will make the visibility of the "expandedView" visible
                 // which will also make the visibility of desc also visible
-
                 if(inventoryList[position].bodySaved) {
-                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
                     view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body
                 }
-                //view.findViewById<EditText>(R.id.tv_description).hint = this.body
 
                 // check if boolean property "extend" is true or false
                 // if it is true make the "extendedView" Visible

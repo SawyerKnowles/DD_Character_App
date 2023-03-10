@@ -2,7 +2,6 @@ package com.example.ddcharacterapp.adapter
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,6 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
         init {
             // Define click listener for the ViewHolder's View
             view.findViewById<Button>(R.id.ability_item_delete_button).setOnClickListener() {
-                //adapter.notesList.removeAt(adapterPosition)
                 adapter.frag.onDeletePressed(adapterPosition)
                 adapter.notifyItemRemoved(adapterPosition)
                 adapter.notifyItemRangeChanged(0, adapter.abilityList.size)
@@ -32,17 +30,13 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
 
             view.findViewById<EditText>(R.id.tv_lang_name).addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.abilityList[adapterPosition].title = p0
                         adapter.abilityList[adapterPosition].title = p0.toString()
                         adapter.abilityList[adapterPosition].titleSaved = true
                     }
@@ -53,17 +47,13 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
             view.findViewById<EditText>(R.id.tv_description).addTextChangedListener(object :
                 TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("beforeTextChanged", "Before Changed")
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    Log.d("onTextChanged", "On Changed")
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
-                    Log.d("afterTextChanged", "After Changed")
                     if (p0 != null) {
-                        //adapter.abilityList[adapterPosition].body = p0
                         adapter.abilityList[adapterPosition].body = p0.toString()
                         adapter.abilityList[adapterPosition].bodySaved = true
                     }
@@ -72,7 +62,7 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
             })
         }
 
-        public fun linkAdapter(adapter : AbilityAdapter) : AbilityAdapter.ViewHolder {
+        fun linkAdapter(adapter : AbilityAdapter) : AbilityAdapter.ViewHolder {
             this.adapter = adapter
             return this
         }
@@ -93,13 +83,11 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
             with(abilityList[position]){
                 // set name of the language from the list
                 if(abilityList[position].titleSaved) {
-                    //view.findViewById<EditText>(R.id.tv_lang_name).text = this.title
                     view.findViewById<EditText>(R.id.tv_lang_name).text = Editable.Factory.getInstance().newEditable(this.title)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
                 }
-                //view.findViewById<EditText>(R.id.tv_lang_name).hint = this.title
 
                 // set description to the text
                 // since this is inside "expandedView" its visibility will be gone initially
@@ -107,13 +95,11 @@ class AbilityAdapter(private var abilityList: ArrayList<AbilityData>, var frag :
                 // which will also make the visibility of desc also visible
 
                 if(abilityList[position].bodySaved) {
-                    //view.findViewById<EditText>(R.id.tv_description).text = this.body
                     view.findViewById<EditText>(R.id.tv_description).text = Editable.Factory.getInstance().newEditable(this.body)
                 }
                 else {
                     view.findViewById<EditText>(R.id.tv_description).hint = this.body
                 }
-                //view.findViewById<EditText>(R.id.tv_description).hint = this.body
 
                 // check if boolean property "extend" is true or false
                 // if it is true make the "extendedView" Visible

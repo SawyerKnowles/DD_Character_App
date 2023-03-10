@@ -17,7 +17,6 @@ class ItemAdapter(private val notesList: List<NoteData>, private val context: Co
         // Item on click listener uses RecyclerViewInterface for NotesFragment to implement
         init {
             view.setOnClickListener {
-                //Log.d("Viewholder onClickListener", "Note " + itemTextView.text.toString() + " Clicked")
                 val pos = adapterPosition
                 if(pos != RecyclerView.NO_POSITION) {
                     recyclerViewInterface.onItemClick(pos)

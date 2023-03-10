@@ -9,9 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
-import androidx.navigation.findNavController
 
 interface OnInputListener {
     fun sendNewCharacterInfo(newName: String, newClass: String, newLevel: String)
@@ -19,7 +16,7 @@ interface OnInputListener {
 
 class NewCharacterDialogFragment: DialogFragment() {
 
-    public lateinit var inputListener: OnInputListener
+    lateinit var inputListener: OnInputListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +24,7 @@ class NewCharacterDialogFragment: DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var rootView: View = inflater.inflate(R.layout.new_character_dialog, container, false)
+        val rootView: View = inflater.inflate(R.layout.new_character_dialog, container, false)
 
         val cancelButton = rootView.findViewById<Button>(R.id.cancel_button)
         cancelButton.setOnClickListener() {
@@ -50,8 +47,7 @@ class NewCharacterDialogFragment: DialogFragment() {
         super.onAttach(context)
 
         try {
-            //inputListener = activity as OnInputListener
-            //inputListener = targetFragment as OnInputListener
+
         } catch (e: ClassCastException) {
             Log.d("ClassCastExceptionDetected", "Activity doesn't implement the onInputListener interface")
         }

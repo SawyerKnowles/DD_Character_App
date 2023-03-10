@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 
 class SettingsFragment : Fragment(), OnDeleteInputListener {
 
@@ -17,7 +16,6 @@ class SettingsFragment : Fragment(), OnDeleteInputListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -33,7 +31,6 @@ class SettingsFragment : Fragment(), OnDeleteInputListener {
         val deleteButton = act.findViewById<Button>(R.id.delete_character_button)
         deleteButton.setOnClickListener() {
             val dialog = DeleteCharacterDialogFragment()
-            //dialog.show(supportFragmentManager, "newCharacterDialog")
             dialog.inputListener = this
             dialog.show(
                 (activity as AppCompatActivity).supportFragmentManager,

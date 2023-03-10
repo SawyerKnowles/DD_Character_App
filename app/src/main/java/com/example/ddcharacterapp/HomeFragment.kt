@@ -1,28 +1,21 @@
 package com.example.ddcharacterapp
 
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.*
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ddcharacterapp.adapter.CharacterCardAdapter
-import com.example.ddcharacterapp.adapter.InventoryAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment(), OnInputListener {
 
-    //val characterList = ArrayList<CharacterCardData>()\
-    lateinit var characterList : ArrayList<CharacterCardData>
-    lateinit var recyclerView : RecyclerView
-    //lateinit var adapter : CharacterCardAdapter
+    private lateinit var characterList : ArrayList<CharacterCardData>
+    private lateinit var recyclerView : RecyclerView
 
     private fun addNewCharacterToList(newName: String, newClass: String, newLevel: String) {
         Log.d("Check2", "Fragment addNewCharacterToList Called")
@@ -40,11 +33,8 @@ class HomeFragment : Fragment(), OnInputListener {
             Log.d("CharacterName", "Character Name: " + menuName.text.toString())
             Log.d("CharacterClass", "Character Class: " + menuClass.text.toString())
             Log.d("CharacterLevel", "Character Level: " + menuLevel.text.toString())
-            //activity?.addMenuProvider(activity as MenuProvider)
-            //Navigation.findNavController(it).navigate(R.id.destination_stats)
         }
 
-        //view?.findViewById<LinearLayout>(R.id.charLayout)?.addView(newCharView)
         val characterDataManager = DataManager()
         characterDataManager.traitsData.basicData.name = menuName.text.toString()
         characterDataManager.traitsData.basicData.characterClass = menuClass.text.toString()
@@ -65,7 +55,6 @@ class HomeFragment : Fragment(), OnInputListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         Log.d("HomeFragment", "HomeFragment created.")
         characterList = (activity as MainActivity).characterListGlobal
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -84,7 +73,6 @@ class HomeFragment : Fragment(), OnInputListener {
         val addCharButton = view?.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         addCharButton?.setOnClickListener() {
             val dialog = NewCharacterDialogFragment()
-            //dialog.show(supportFragmentManager, "newCharacterDialog")
             dialog.inputListener = this
             dialog.show(
                 (activity as AppCompatActivity).supportFragmentManager,

@@ -17,14 +17,15 @@ interface OnDeleteInputListener {
 
 class DeleteCharacterDialogFragment : DialogFragment() {
 
-    public lateinit var inputListener: OnDeleteInputListener
+    lateinit var inputListener: OnDeleteInputListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var rootView: View = inflater.inflate(R.layout.delete_character_dialog, container, false)
+
+        val rootView: View = inflater.inflate(R.layout.delete_character_dialog, container, false)
 
         val cancelButton = rootView.findViewById<Button>(R.id.delete_cancel_button)
         cancelButton.setOnClickListener() {
@@ -44,8 +45,7 @@ class DeleteCharacterDialogFragment : DialogFragment() {
         super.onAttach(context)
 
         try {
-            //inputListener = activity as OnInputListener
-            //inputListener = targetFragment as OnInputListener
+
         } catch (e: ClassCastException) {
             Log.d("ClassCastExceptionDetected", "Activity doesn't implement the onInputListener interface")
         }
