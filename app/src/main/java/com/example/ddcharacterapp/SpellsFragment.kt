@@ -62,8 +62,6 @@ class SpellsFragment : Fragment() {
         Log.d("SpellsFragment", "SpellsFragment created.")
         val mainAct =  (activity as MainActivity)
 
-        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
-
         readFromDataManager()
 
         //Set up casting ability edit text saving

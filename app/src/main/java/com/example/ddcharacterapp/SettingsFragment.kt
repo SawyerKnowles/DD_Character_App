@@ -25,8 +25,6 @@ class SettingsFragment : Fragment(), OnDeleteInputListener {
         val act = (activity as AppCompatActivity) // get activity
 
         val mainAct = (activity as MainActivity) // get activity
-        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
-
 
         val deleteButton = act.findViewById<Button>(R.id.delete_character_button)
         deleteButton.setOnClickListener() {

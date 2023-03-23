@@ -109,6 +109,7 @@ class StatsFragment : Fragment() {
 
         Log.d("StatsFragment", "StatsFragment created.")
         val mainAct =  (activity as MainActivity)
+
         mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
 
         readFromDataManager()

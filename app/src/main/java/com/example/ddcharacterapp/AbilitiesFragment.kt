@@ -44,8 +44,6 @@ class AbilitiesFragment : Fragment() {
         Log.d("AbilityFragment", "AbilityFragment created.")
         val mainAct =  (activity as MainActivity)
 
-        mainAct.supportActionBar?.title = mainAct.dataManager.traitsData.basicData.name
-
         abilityList = mainAct.dataManager.abilitiesData.abilitiesDataList // get abilities list from main activity DM
 
         val recyclerView = act.findViewById<RecyclerView>(R.id.abilities_recycler)

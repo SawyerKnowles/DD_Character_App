@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity(), MenuProvider {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val navigated = NavigationUI.onNavDestinationSelected(menuItem, navController)
+        supportActionBar?.title = dataManager.traitsData.basicData.name
         return navigated || super.onOptionsItemSelected(menuItem)
     }
 
