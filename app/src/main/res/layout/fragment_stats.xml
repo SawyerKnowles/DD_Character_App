@@ -80,7 +80,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="35dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
@@ -95,11 +95,10 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
                                 android:text="Max"
-                                android:textAlignment="center"
-                                android:textSize="15sp" />
+                                app:autoSizeTextType="uniform"/>
 
                             <View
                                 android:id="@+id/HP_divider_1"
@@ -124,11 +123,10 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
                                 android:text="Temp"
-                                android:textAlignment="center"
-                                android:textSize="15sp" />
+                                app:autoSizeTextType="uniform"/>
 
                         </LinearLayout>
 
@@ -155,17 +153,16 @@
                                 android:layout_width="80dp"
                                 android:layout_height="125dp"
                                 android:ems="10"
-                                android:hint="00"
+                                android:hint="000"
                                 android:inputType="number"
                                 android:textAlignment="center"
-                                android:textSize="48sp" />
+                                android:textSize="40sp" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Current HP"
-                                android:textAlignment="center"
-                                android:textSize="15sp" />
+                                app:autoSizeTextType="uniform" />
                         </LinearLayout>
 
                         <View
@@ -191,7 +188,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="77dp"
                                 android:ems="10"
-                                android:hint="00"
+                                android:hint="000"
                                 android:inputType="number"
                                 android:textAlignment="center"
                                 android:textSize="30sp" />
@@ -217,10 +214,10 @@
                             </LinearLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Change HP"
-                                android:textSize="15sp" />
+                                app:autoSizeTextType="uniform" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -228,7 +225,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
@@ -262,11 +259,10 @@
                         android:textAlignment="center"
                         android:textSize="20sp" />
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Current HD"
-                        android:textAlignment="center"
-                        android:textSize="15sp" />
+                        app:autoSizeTextType="uniform"/>
 
                     <View
                         android:id="@+id/HD_divider_1"
@@ -289,11 +285,10 @@
                         android:textAlignment="center"
                         android:textSize="20sp" />
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Max HD"
-                        android:textAlignment="center"
-                        android:textSize="15sp" />
+                        app:autoSizeTextType="uniform" />
 
                 </LinearLayout>
 
@@ -626,10 +621,10 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:text="Strength"
                             android:textAlignment="center"
-                            android:textSize="34sp" />
+                            app:autoSizeTextType="uniform"/>
 
                         <View
                             android:id="@+id/stats_STR_divider"
@@ -740,10 +735,10 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:text="Dexterity"
                             android:textAlignment="center"
-                            android:textSize="34sp" />
+                            app:autoSizeTextType="uniform" />
 
                         <View
                             android:id="@+id/stats_DEX_divider"
@@ -878,10 +873,10 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:text="Constitution"
                             android:textAlignment="center"
-                            android:textSize="29sp" />
+                            app:autoSizeTextType="uniform" />
 
                         <View
                             android:id="@+id/CON_stats_divider"
@@ -984,10 +979,10 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:text="Intelligence"
                             android:textAlignment="center"
-                            android:textSize="29sp" />
+                            app:autoSizeTextType="uniform" />
 
                         <View
                             android:id="@+id/INT_stats_divider"
@@ -1092,7 +1087,7 @@
                                     android:minWidth="0dp"
                                     android:minHeight="0dp"
                                     android:text="Investigation"
-                                    android:textSize="10sp" />
+                                    android:textSize="9sp" />
 
                                 <CheckBox
                                     android:id="@+id/INT_nature"
@@ -1143,10 +1138,10 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:text="Wisdom"
                             android:textAlignment="center"
-                            android:textSize="29sp" />
+                            app:autoSizeTextType="uniform" />
 
                         <View
                             android:id="@+id/WIS_stats_divider"
@@ -1289,10 +1284,10 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:text="Charisma"
                             android:textAlignment="center"
-                            android:textSize="29sp" />
+                            app:autoSizeTextType="uniform" />
 
                         <View
                             android:id="@+id/CHA_stats_divider"
@@ -1388,7 +1383,7 @@
                                     android:minWidth="0dp"
                                     android:minHeight="0dp"
                                     android:text="Intimidation"
-                                    android:textSize="10sp" />
+                                    android:textSize="9sp" />
 
                                 <CheckBox
                                     android:id="@+id/CHA_performance"
@@ -1397,7 +1392,7 @@
                                     android:minWidth="0dp"
                                     android:minHeight="0dp"
                                     android:text="Performance"
-                                    android:textSize="10sp" />
+                                    android:textSize="8sp" />
 
                                 <CheckBox
                                     android:id="@+id/CHA_persuasion"

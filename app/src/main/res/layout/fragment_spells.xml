@@ -67,10 +67,11 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="25dp"
                             android:text="Cast Ability"
                             android:textAlignment="center"
-                            android:textSize="20sp" />
+                            app:autoSizeMinTextSize="15sp"
+                            app:autoSizeTextType="uniform"/>
 
                         <View
                             android:id="@+id/speed_divider"
@@ -90,7 +91,8 @@
                             android:hint="AAA"
                             android:inputType="text"
                             android:textAlignment="center"
-                            android:textSize="30sp" />
+                            android:textSize="30sp"
+                            app:autoSizeTextType="uniform"/>
 
                     </LinearLayout>
 
@@ -105,10 +107,11 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="25dp"
                             android:text="Save DC"
                             android:textAlignment="center"
-                            android:textSize="20sp" />
+                            app:autoSizeMinTextSize="15sp"
+                            app:autoSizeTextType="uniform" />
 
                         <View
                             android:id="@+id/AC_divider"
@@ -128,7 +131,8 @@
                             android:hint="00"
                             android:inputType="number"
                             android:textAlignment="center"
-                            android:textSize="30sp" />
+                            android:textSize="30sp"
+                            app:autoSizeTextType="uniform"/>
 
                     </LinearLayout>
 
@@ -143,10 +147,11 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="25dp"
                             android:text="Atk. Bonus"
                             android:textAlignment="center"
-                            android:textSize="20sp" />
+                            app:autoSizeMinTextSize="15sp"
+                            app:autoSizeTextType="uniform" />
 
                         <View
                             android:id="@+id/INIT_divider"
@@ -166,7 +171,8 @@
                             android:hint="+00"
                             android:inputType="numberSigned"
                             android:textAlignment="center"
-                            android:textSize="30sp" />
+                            android:textSize="30sp"
+                            app:autoSizeTextType="uniform"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -219,15 +225,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_0_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -259,6 +265,7 @@
                             android:id="@+id/level_1_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -273,6 +280,7 @@
                             android:id="@+id/level_1_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -302,15 +310,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_1_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -342,6 +350,7 @@
                             android:id="@+id/level_2_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -356,6 +365,7 @@
                             android:id="@+id/level_2_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -385,15 +395,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_2_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -425,6 +435,7 @@
                             android:id="@+id/level_3_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -439,6 +450,7 @@
                             android:id="@+id/level_3_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -468,15 +480,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_3_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -508,6 +520,7 @@
                             android:id="@+id/level_4_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -522,6 +535,7 @@
                             android:id="@+id/level_4_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -551,15 +565,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_4_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -591,6 +605,7 @@
                             android:id="@+id/level_5_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -605,6 +620,7 @@
                             android:id="@+id/level_5_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -635,15 +651,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_5_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -675,6 +691,7 @@
                             android:id="@+id/level_6_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -689,6 +706,7 @@
                             android:id="@+id/level_6_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -718,15 +736,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_6_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -758,6 +776,7 @@
                             android:id="@+id/level_7_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -772,6 +791,7 @@
                             android:id="@+id/level_7_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -801,15 +821,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_7_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -841,6 +861,7 @@
                             android:id="@+id/level_8_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -855,6 +876,7 @@
                             android:id="@+id/level_8_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -884,15 +906,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_8_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -924,6 +946,7 @@
                             android:id="@+id/level_9_spell_slots"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -938,6 +961,7 @@
                             android:id="@+id/level_9_spell_slots_max"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="0"
                             android:textSize="20sp" />
 
@@ -967,15 +991,15 @@
                         android:paddingRight="10dp">
 
                         <Space
-                            android:layout_width="320dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="0.85" />
 
                         <Button
                             android:id="@+id/level_9_spells_add_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.15"
                             android:text="+"
                             android:textSize="20sp" />
                     </LinearLayout>

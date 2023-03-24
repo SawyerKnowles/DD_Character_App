@@ -31,9 +31,48 @@ class SpellsFragment : Fragment() {
     private var saveDC = ""
     private var attackBonus = ""
 
+    private var level_1_spell_slots = ""
+    private var level_1_spell_slotMax = ""
+    private var level_2_spell_slots = ""
+    private var level_2_spell_slotMax = ""
+    private var level_3_spell_slots = ""
+    private var level_3_spell_slotMax = ""
+    private var level_4_spell_slots = ""
+    private var level_4_spell_slotMax = ""
+    private var level_5_spell_slots = ""
+    private var level_5_spell_slotMax = ""
+    private var level_6_spell_slots = ""
+    private var level_6_spell_slotMax = ""
+    private var level_7_spell_slots = ""
+    private var level_7_spell_slotMax = ""
+    private var level_8_spell_slots = ""
+    private var level_8_spell_slotMax = ""
+    private var level_9_spell_slots = ""
+    private var level_9_spell_slotMax = ""
+
     private lateinit var castingAbilityEditText : EditText
     private lateinit var saveDCEditText: EditText
     private lateinit var attackBonusEditText: EditText
+
+    private lateinit var L1_spellSlotsEditText: EditText
+    private lateinit var L2_spellSlotsEditText: EditText
+    private lateinit var L3_spellSlotsEditText: EditText
+    private lateinit var L4_spellSlotsEditText: EditText
+    private lateinit var L5_spellSlotsEditText: EditText
+    private lateinit var L6_spellSlotsEditText: EditText
+    private lateinit var L7_spellSlotsEditText: EditText
+    private lateinit var L8_spellSlotsEditText: EditText
+    private lateinit var L9_spellSlotsEditText: EditText
+
+    private lateinit var L1_spellSlotMaxEditText: EditText
+    private lateinit var L2_spellSlotMaxEditText: EditText
+    private lateinit var L3_spellSlotMaxEditText: EditText
+    private lateinit var L4_spellSlotMaxEditText: EditText
+    private lateinit var L5_spellSlotMaxEditText: EditText
+    private lateinit var L6_spellSlotMaxEditText: EditText
+    private lateinit var L7_spellSlotMaxEditText: EditText
+    private lateinit var L8_spellSlotMaxEditText: EditText
+    private lateinit var L9_spellSlotMaxEditText: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,6 +119,79 @@ class SpellsFragment : Fragment() {
         attackBonusEditText.isSaveEnabled = false
         attackBonusEditText.setText(attackBonus)
 
+        //Set up spell slots
+        L1_spellSlotsEditText = view.findViewById(R.id.level_1_spell_slots)
+        L1_spellSlotsEditText.isSaveEnabled = false
+        L1_spellSlotsEditText.setText(level_1_spell_slots)
+
+        L2_spellSlotsEditText = view.findViewById(R.id.level_2_spell_slots)
+        L2_spellSlotsEditText.isSaveEnabled = false
+        L2_spellSlotsEditText.setText(level_2_spell_slots)
+
+        L3_spellSlotsEditText = view.findViewById(R.id.level_3_spell_slots)
+        L3_spellSlotsEditText.isSaveEnabled = false
+        L3_spellSlotsEditText.setText(level_3_spell_slots)
+
+        L4_spellSlotsEditText = view.findViewById(R.id.level_4_spell_slots)
+        L4_spellSlotsEditText.isSaveEnabled = false
+        L4_spellSlotsEditText.setText(level_4_spell_slots)
+
+        L5_spellSlotsEditText = view.findViewById(R.id.level_5_spell_slots)
+        L5_spellSlotsEditText.isSaveEnabled = false
+        L5_spellSlotsEditText.setText(level_5_spell_slots)
+
+        L6_spellSlotsEditText = view.findViewById(R.id.level_6_spell_slots)
+        L6_spellSlotsEditText.isSaveEnabled = false
+        L6_spellSlotsEditText.setText(level_6_spell_slots)
+
+        L7_spellSlotsEditText = view.findViewById(R.id.level_7_spell_slots)
+        L7_spellSlotsEditText.isSaveEnabled = false
+        L7_spellSlotsEditText.setText(level_7_spell_slots)
+
+        L8_spellSlotsEditText = view.findViewById(R.id.level_8_spell_slots)
+        L8_spellSlotsEditText.isSaveEnabled = false
+        L8_spellSlotsEditText.setText(level_8_spell_slots)
+
+        L9_spellSlotsEditText = view.findViewById(R.id.level_9_spell_slots)
+        L9_spellSlotsEditText.isSaveEnabled = false
+        L9_spellSlotsEditText.setText(level_9_spell_slots)
+
+        //Set up spell slots max
+        L1_spellSlotMaxEditText = view.findViewById(R.id.level_1_spell_slots_max)
+        L1_spellSlotMaxEditText.isSaveEnabled = false
+        L1_spellSlotMaxEditText.setText(level_1_spell_slotMax.toString())
+
+        L2_spellSlotMaxEditText = view.findViewById(R.id.level_2_spell_slots_max)
+        L2_spellSlotMaxEditText.isSaveEnabled = false
+        L2_spellSlotMaxEditText.setText(level_2_spell_slotMax.toString())
+
+        L3_spellSlotMaxEditText = view.findViewById(R.id.level_3_spell_slots_max)
+        L3_spellSlotMaxEditText.isSaveEnabled = false
+        L3_spellSlotMaxEditText.setText(level_3_spell_slotMax.toString())
+
+        L4_spellSlotMaxEditText = view.findViewById(R.id.level_4_spell_slots_max)
+        L4_spellSlotMaxEditText.isSaveEnabled = false
+        L4_spellSlotMaxEditText.setText(level_4_spell_slotMax.toString())
+
+        L5_spellSlotMaxEditText = view.findViewById(R.id.level_5_spell_slots_max)
+        L5_spellSlotMaxEditText.isSaveEnabled = false
+        L5_spellSlotMaxEditText.setText(level_5_spell_slotMax.toString())
+
+        L6_spellSlotMaxEditText = view.findViewById(R.id.level_6_spell_slots_max)
+        L6_spellSlotMaxEditText.isSaveEnabled = false
+        L6_spellSlotMaxEditText.setText(level_6_spell_slotMax.toString())
+
+        L7_spellSlotMaxEditText = view.findViewById(R.id.level_7_spell_slots_max)
+        L7_spellSlotMaxEditText.isSaveEnabled = false
+        L7_spellSlotMaxEditText.setText(level_7_spell_slotMax.toString())
+
+        L8_spellSlotMaxEditText = view.findViewById(R.id.level_8_spell_slots_max)
+        L8_spellSlotMaxEditText.isSaveEnabled = false
+        L8_spellSlotMaxEditText.setText(level_8_spell_slotMax.toString())
+
+        L9_spellSlotMaxEditText = view.findViewById(R.id.level_9_spell_slots_max)
+        L9_spellSlotMaxEditText.isSaveEnabled = false
+        L9_spellSlotMaxEditText.setText(level_9_spell_slotMax.toString())
 
         val level_0_recycler_view = attachRecyclerList(act, level_0_spell_list, R.id.level_0_spells_recycler)
         val level_1_recycler_view = attachRecyclerList(act, level_1_spell_list, R.id.level_1_spells_recycler)
@@ -276,6 +388,25 @@ class SpellsFragment : Fragment() {
         level_8_spell_list = mainAct.dataManager.spellsData.level_8_spell_dataList // get spell list from main activity DM
         level_9_spell_list = mainAct.dataManager.spellsData.level_9_spell_dataList // get spell list from main activity DM
 
+        level_1_spell_slots = mainAct.dataManager.spellsData.level_1_spell_slots
+        level_2_spell_slots = mainAct.dataManager.spellsData.level_2_spell_slots
+        level_3_spell_slots = mainAct.dataManager.spellsData.level_3_spell_slots
+        level_4_spell_slots = mainAct.dataManager.spellsData.level_4_spell_slots
+        level_5_spell_slots = mainAct.dataManager.spellsData.level_5_spell_slots
+        level_6_spell_slots = mainAct.dataManager.spellsData.level_6_spell_slots
+        level_7_spell_slots = mainAct.dataManager.spellsData.level_7_spell_slots
+        level_8_spell_slots = mainAct.dataManager.spellsData.level_8_spell_slots
+        level_9_spell_slots = mainAct.dataManager.spellsData.level_9_spell_slots
+        level_1_spell_slotMax = mainAct.dataManager.spellsData.level_1_spell_slotMax
+        level_2_spell_slotMax = mainAct.dataManager.spellsData.level_2_spell_slotMax
+        level_3_spell_slotMax = mainAct.dataManager.spellsData.level_3_spell_slotMax
+        level_4_spell_slotMax = mainAct.dataManager.spellsData.level_4_spell_slotMax
+        level_5_spell_slotMax = mainAct.dataManager.spellsData.level_5_spell_slotMax
+        level_6_spell_slotMax = mainAct.dataManager.spellsData.level_6_spell_slotMax
+        level_7_spell_slotMax = mainAct.dataManager.spellsData.level_7_spell_slotMax
+        level_8_spell_slotMax = mainAct.dataManager.spellsData.level_8_spell_slotMax
+        level_9_spell_slotMax = mainAct.dataManager.spellsData.level_9_spell_slotMax
+
     }
 
     private fun writeToDataManager() {
@@ -299,5 +430,59 @@ class SpellsFragment : Fragment() {
         mainAct.dataManager.spellsData.level_7_spell_dataList = level_7_spell_list // set spell list for main activity DM
         mainAct.dataManager.spellsData.level_8_spell_dataList = level_8_spell_list // set spell list for main activity DM
         mainAct.dataManager.spellsData.level_9_spell_dataList = level_9_spell_list // set spell list for main activity DM
+
+        level_1_spell_slots = L1_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_1_spell_slots = level_1_spell_slots
+
+        level_2_spell_slots = L2_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_2_spell_slots = level_2_spell_slots
+
+        level_3_spell_slots = L3_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_3_spell_slots = level_3_spell_slots
+
+        level_4_spell_slots = L4_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_4_spell_slots = level_4_spell_slots
+
+        level_5_spell_slots = L5_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_5_spell_slots = level_5_spell_slots
+
+        level_6_spell_slots = L6_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_6_spell_slots = level_6_spell_slots
+
+        level_7_spell_slots = L7_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_7_spell_slots = level_7_spell_slots
+
+        level_8_spell_slots = L8_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_8_spell_slots = level_8_spell_slots
+
+        level_9_spell_slots = L9_spellSlotsEditText.text.toString()
+        mainAct.dataManager.spellsData.level_9_spell_slots = level_9_spell_slots
+
+        level_1_spell_slotMax = L1_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_1_spell_slotMax = level_1_spell_slotMax
+
+        level_2_spell_slotMax = L2_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_2_spell_slotMax = level_2_spell_slotMax
+
+        level_3_spell_slotMax = L3_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_3_spell_slotMax = level_3_spell_slotMax
+
+        level_4_spell_slotMax = L4_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_4_spell_slotMax = level_4_spell_slotMax
+
+        level_5_spell_slotMax = L5_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_5_spell_slotMax = level_5_spell_slotMax
+
+        level_6_spell_slotMax = L6_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_6_spell_slotMax = level_6_spell_slotMax
+
+        level_7_spell_slotMax = L7_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_7_spell_slotMax = level_7_spell_slotMax
+
+        level_8_spell_slotMax = L8_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_8_spell_slotMax = level_8_spell_slotMax
+
+        level_9_spell_slotMax = L9_spellSlotMaxEditText.text.toString()
+        mainAct.dataManager.spellsData.level_9_spell_slotMax = level_9_spell_slotMax
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuProvider
 import androidx.navigation.NavController
@@ -41,6 +42,13 @@ class MainActivity : AppCompatActivity(), MenuProvider {
         characterListGlobal = gson.fromJson(json, type)
     }
 
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            //removeMenuProvider(this@MainActivity)
+            onSupportNavigateUp()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.navigation_main)
@@ -53,6 +61,8 @@ class MainActivity : AppCompatActivity(), MenuProvider {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         setupActionBar(navController)
+
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     private fun setupActionBar(navController: NavController) {
@@ -83,5 +93,4 @@ class MainActivity : AppCompatActivity(), MenuProvider {
         saveData()
         super.onStop()
     }
-
 }

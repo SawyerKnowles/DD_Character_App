@@ -27,7 +27,25 @@ class DataManager {
         ArrayList(),
         ArrayList(),
         ArrayList(),
-        ArrayList()
+        ArrayList(),
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
     )
 
 
